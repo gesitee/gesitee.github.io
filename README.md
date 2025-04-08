@@ -15,7 +15,7 @@ Cocok banget buat UMKM, online shop, hingga perusahaan besar yang pengen hemat w
 
 ## Teknologi yang Digunakan
 
-- HTML5 & CSS3
+- HTML5 & CSS3 & JS
 - GitHub Pages untuk hosting
 
 ## Kontribusi
