@@ -4,105 +4,264 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gesite AI</title>
-        <meta name="description" content="Gesite AI itu asisten chat otomatis buat WhatsApp yang siap bantu bisnis kamu jawab chat pelanggan 24/7. Cepat, pintar, dan hemat waktu—biar kamu bisa fokus ngembangin usaha tanpa ribet balas chat terus.">
-        <meta property="og:image" content="https://raw.githubusercontent.com/gesitee/pel/refs/heads/main/1735917365963.jpg" />
-            <meta name="keywords" content="Gesite AI, Gsite AI, Gesit AI, GesiteAI, Gesite.AI, AI, gesiteeai, teknologi AI, teknologi cerdas, AI pintar, ChatBot AI, ChatBot AI WhatsApp, Chat Bot AI, AI Whatsap, AI Watsapp, AI Watsap, AI WatsApp, WhatsApp AI, WA AI, Chatbot WhatsApp AI, digital AI, asisten digital, asisten cerdas, solusi WhatsApp, teknologi WhatsApp, WA bot, bot WhatsApp, bot WA AI, aplikasi WhatsApp AI, AI untuk bisnis, AI solusi bisnis, AI untuk WhatsApp, Gesite WA, Gesite Chatbot, Gesite bot, AI bot Gesite, AI chat, teknologi canggih, inovasi digital, WhatsApp solusi bisnis, AI platform, chatbot terbaik, teknologi AI terbaik, platform AI, alat digital, layanan AI, layanan WhatsApp AI">
+    <meta name="description" content="Gesite AI itu asisten chat otomatis buat WhatsApp yang siap bantu bisnis kamu jawab chat pelanggan 24/7. Cepat, pintar, dan hemat waktu—biar kamu bisa fokus ngembangin usaha tanpa ribet balas chat terus.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/gesitee/pel/refs/heads/main/1735917365963.jpg" />
+    <meta name="keywords" content="Gesite AI, Gsite AI, Gesit AI, GesiteAI, Gesite.AI, AI, gesiteeai, teknologi AI, teknologi cerdas, AI pintar, ChatBot AI, ChatBot AI WhatsApp, Chat Bot AI, AI Whatsap, AI Watsapp, AI Watsap, AI WatsApp, WhatsApp AI, WA AI, Chatbot WhatsApp AI, digital AI, asisten digital, asisten cerdas, solusi WhatsApp, teknologi WhatsApp, WA bot, bot WhatsApp, bot WA AI, aplikasi WhatsApp AI, AI untuk bisnis, AI solusi bisnis, AI untuk WhatsApp, Gesite WA, Gesite Chatbot, Gesite bot, AI bot Gesite, AI chat, teknologi canggih, inovasi digital, WhatsApp solusi bisnis, AI platform, chatbot terbaik, teknologi AI terbaik, platform AI, alat digital, layanan AI, layanan WhatsApp AI">
     <meta name="author" content="Fawwaz Dzaky">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/gesitee/pel/refs/heads/main/Proyek%20Baru%20146%20%5B8B777C5%5D.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Warna Utama Website */
             --primary-blue: #2563eb;
             --primary-green: #10b981;
             --dark-blue: #1e40af;
             --dark-green: #059669;
+            /* Warna Chatbot - Minimalis & Modern */
+            --chatbot-bg: #ffffff;
+            --chatbot-header-text: #1f2937; /* text-gray-800 */
+            --chatbot-border: #e5e7eb; /* border-gray-200 */
+            --chatbot-input-bg: #f9fafb; /* gray-50 */
+            --chatbot-input-text: #374151; /* gray-700 */
+            --chatbot-bot-msg-bg: #f3f4f6; /* gray-100 */
+            --chatbot-bot-msg-text: #1f2937; /* gray-800 */
+            --chatbot-user-msg-bg: var(--primary-blue); /* Solid blue */
+            --chatbot-user-msg-text: #ffffff;
+            --chatbot-icon-color: #6b7280; /* gray-500 */
+            --chatbot-send-button-bg: var(--primary-blue);
+            --chatbot-send-button-hover-bg: var(--dark-blue);
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
-        
+
+        /* Utility Classes Asli */
         .gradient-text {
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
         .gradient-bg {
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
         }
-        
-        .gradient-border {
-            position: relative;
-        }
-        
+        .gradient-border { position: relative; }
         .gradient-border::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
-            padding: 2px;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit; padding: 2px;
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
         }
-        
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-8px); /* Slightly less lift */
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08); /* Softer shadow */
             transition: all 0.3s ease-in-out;
         }
-        
-        /* Animasi Kustom */
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-        
-        .animate-slide-up {
-            animation: slideUp 1s ease-in-out;
-        }
-        
-        .animate-fade-in-right {
-            animation: fadeInRight 1s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes fadeInRight {
-            from { transform: translateX(20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        /* Animasi untuk menu mobile */
-#mobile-menu {
-    transition: all 0.5s ease-out;
-    max-height: 0;
-    overflow: hidden;
-}
 
-#mobile-menu:not(.hidden) {
-    max-height: 500px; /* Sesuaikan dengan tinggi menu Anda */
-}
+        /* Animasi Kustom Asli */
+        .animate-fade-in { animation: fadeIn 1s ease-in-out; }
+        .animate-slide-up { animation: slideUp 1s ease-in-out; }
+        .animate-fade-in-right { animation: fadeInRight 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeInRight { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Mobile Menu Animation Asli */
+        #mobile-menu { transition: max-height 0.5s ease-out, opacity 0.5s ease-out; max-height: 0; overflow: hidden; opacity: 0; }
+        #mobile-menu:not(.hidden) { max-height: 500px; opacity: 1; }
+
+        /* --- START: Chatbot Widget CSS (Minimalist & Modern) --- */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 350px;
+            height: 500px;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--chatbot-bg);
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s;
+            transform: translateY(15px) scale(0.98);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .chatbot-widget.visible {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chatbot-widget .chat-container {
+            width: 100%; height: 100%; max-width: none; max-height: none;
+            box-shadow: none; border-radius: 0;
+            display: flex; flex-direction: column;
+        }
+
+        .chatbot-widget .chat-header {
+            background-color: transparent;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--chatbot-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .chatbot-widget .chat-header-title {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: var(--chatbot-header-text);
+        }
+
+        .chatbot-widget .close-chatbot-button {
+            background: none; border: none;
+            color: var(--chatbot-icon-color);
+            font-size: 1.6em;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        .chatbot-widget .close-chatbot-button:hover {
+            color: var(--chatbot-header-text);
+        }
+
+        .chatbot-widget .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: var(--chatbot-bg);
+        }
+        .chatbot-widget .chat-messages::-webkit-scrollbar { width: 6px; }
+        .chatbot-widget .chat-messages::-webkit-scrollbar-track { background: transparent; }
+        .chatbot-widget .chat-messages::-webkit-scrollbar-thumb { background-color: var(--chatbot-border); border-radius: 3px; }
+        .chatbot-widget .chat-messages::-webkit-scrollbar-thumb:hover { background-color: #d1d5db; }
+
+
+        .chatbot-widget .message {
+            padding: 10px 14px;
+            border-radius: 16px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.5;
+            font-size: 0.9em;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .chatbot-widget .user-message {
+            background-color: var(--chatbot-user-msg-bg);
+            color: var(--chatbot-user-msg-text);
+            align-self: flex-end;
+            border-bottom-right-radius: 6px;
+        }
+
+        .chatbot-widget .bot-message {
+            background-color: var(--chatbot-bot-msg-bg);
+            color: var(--chatbot-bot-msg-text);
+            align-self: flex-start;
+            border-bottom-left-radius: 6px;
+        }
+
+        .chatbot-widget .typing-indicator {
+            font-style: italic;
+            color: var(--chatbot-icon-color);
+            align-self: flex-start;
+            font-size: 0.85em;
+            padding: 8px 12px;
+            background-color: var(--chatbot-bot-msg-bg);
+            box-shadow: none;
+        }
+
+        .chatbot-widget .chat-input-area {
+            padding: 15px 20px;
+            border-top: 1px solid var(--chatbot-border);
+            background-color: var(--chatbot-bg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+         .chatbot-widget .input-wrapper {
+             flex-grow: 1;
+         }
+
+        .chatbot-widget #chatbot-user-input {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            font-family: var(--font-family);
+            font-size: 0.95em;
+            background-color: var(--chatbot-input-bg);
+            color: var(--chatbot-input-text);
+            outline: none;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+
+        .chatbot-widget #chatbot-user-input:focus {
+             background-color: #e5e7eb;
+        }
+        .chatbot-widget #chatbot-user-input::placeholder {
+            color: #9ca3af;
+            opacity: 1;
+        }
+
+        .chatbot-widget #chatbot-send-button {
+            background-color: var(--chatbot-send-button-bg);
+            color: var(--chatbot-user-msg-text);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .chatbot-widget #chatbot-send-button:hover {
+             background-color: var(--chatbot-send-button-hover-bg);
+             transform: scale(1.05);
+        }
+         .chatbot-widget #chatbot-send-button:active {
+             transform: scale(0.95);
+         }
+         .chatbot-widget #chatbot-send-button svg {
+             width: 20px;
+             height: 20px;
+         }
+
+        /* Responsiveness Widget */
+         @media (max-width: 420px) {
+             .chatbot-widget {
+                 width: calc(100% - 30px);
+                 height: calc(75vh);
+                 bottom: 15px; right: 15px; left: 15px;
+                 max-height: 600px;
+             }
+             .chatbot-widget .chat-messages { padding: 15px; }
+             .chatbot-widget .chat-input-area { padding: 10px 15px; }
+         }
+        /* --- END: Chatbot Widget CSS --- */
 
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
     <nav class="fixed w-full bg-white shadow-sm z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
@@ -125,17 +284,16 @@
                 </button>
             </div>
             <div id="mobile-menu" class="hidden md:hidden">
-                <a href="#home" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition">Beranda</a>
-                <a href="#features" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition">Fitur</a>
-                <a href="#benefits" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition">Manfaat</a>
-                <a href="#testimonials" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition">Testimoni</a>
-                <a href="#pricing" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition">Harga</a>
-                <a href="https://wa.me/6289652253675" class="block py-2 px-4 gradient-bg text-white rounded-full hover:shadow-lg transition-all duration-300 ease-in-out">Coba Gratis</a>
+                <a href="#home" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition nav-link-mobile">Beranda</a>
+                <a href="#features" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition nav-link-mobile">Fitur</a>
+                <a href="#benefits" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition nav-link-mobile">Manfaat</a>
+                <a href="#testimonials" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition nav-link-mobile">Testimoni</a>
+                <a href="#pricing" class="block py-2 px-4 text-gray-600 hover:text-blue-500 transition nav-link-mobile">Harga</a>
+                <a href="https://wa.me/6289652253675" class="block mt-2 py-2 px-4 gradient-bg text-white rounded-full hover:shadow-lg transition-all duration-300 ease-in-out text-center">Coba Gratis</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="pt-32 pb-20 px-6">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row items-center">
@@ -146,7 +304,7 @@
                     <p class="text-xl text-gray-600 mb-8">Gesite AI membantu bisnis menangani ribuan percakapan dengan cepat, memastikan respons yang efisien dan profesional 24/7.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a href="https://wa.me/6289652253675" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out text-center font-medium">Mulai Free Trial</a>
-                        <a href="#features" class="border border-blue-500 text-blue-500 px-8 py-3 rounded-full hover:bg-blue-50 transition-all duration-300 ease-in-out text-center font-medium">Pelajari Fitur</a>
+                        <button id="learn-features-button" class="border border-blue-500 text-blue-500 px-8 py-3 rounded-full hover:bg-blue-50 transition-all duration-300 ease-in-out text-center font-medium">Pelajari Fitur</button>
                     </div>
                 </div>
                 <img src="https://files.catbox.moe/thv4lz.png" alt="Robot AI" class="md:w-1/2 h-64 md:h-96 object-contain animate-fade-in-right">
@@ -154,9 +312,8 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
+         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-slide-up">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Fitur Unggulan Gesite AI</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">Solusi lengkap untuk otomatisasi percakapan bisnis Anda di WhatsApp</p>
@@ -203,520 +360,602 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
     <section id="benefits" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
+         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-up">
                     <div class="bg-white p-8 rounded-xl shadow-md">
                         <h2 class="text-3xl font-bold mb-6 gradient-text">Manfaat Menggunakan Gesite AI</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Efisiensi Waktu</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Ketersediaan 24/7</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Meningkatkan Kepuasan Pelanggan</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Pengurangan Biaya Operasional</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Meningkatkan Skala Bisnis</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Peningkatan Produktivitas</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Konsistensi Layanan</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="text-gray-700">Meningkatkan Penjualan</p>
-                            </div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Efisiensi Waktu</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Ketersediaan 24/7</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Meningkatkan Kepuasan Pelanggan</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Pengurangan Biaya Operasional</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Meningkatkan Skala Bisnis</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Peningkatan Produktivitas</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Konsistensi Layanan</p></div>
+                            <div class="flex items-start"><div class="gradient-bg rounded-full p-2 mr-4 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div><p class="text-gray-700">Meningkatkan Penjualan</p></div>
                         </div>
                     </div>
                 </div>
                 <div class="md:w-1/2 md:pl-10 animate-slide-up">
                     <h3 class="text-2xl font-bold mb-4 gradient-text">Transformasi Bisnis Anda</h3>
                     <p class="text-gray-600 mb-6">Gesite AI memberikan solusi komprehensif untuk mengotomatisasi komunikasi bisnis Anda di WhatsApp, memungkinkan Anda fokus pada pengembangan bisnis sementara AI kami menangani percakapan dengan pelanggan.</p>
-                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                        <div class="flex items-center">
-                            <div class="gradient-bg rounded-full p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Free Trial 2 Hari</h4>
-                                <p class="text-gray-600">Rasakan manfaatnya tanpa perlu kartu kredit</p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6"><div class="flex items-center"><div class="gradient-bg rounded-full p-3 mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><div><h4 class="font-bold text-lg">Free Trial 2 Hari</h4><p class="text-gray-600">Rasakan manfaatnya tanpa perlu kartu kredit</p></div></div></div>
                     <a href="https://wa.me/6289652253675" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out inline-block text-center font-medium">Mulai Free Trial Sekarang</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section id="testimonials" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 animate-slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Apa Kata Klien Kami</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Pengalaman nyata dari bisnis yang telah menggunakan Gesite AI</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md animate-fade-in">
+         <div class="container mx-auto px-6">
+             <div class="text-center mb-16 animate-slide-up">
+                 <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Apa Kata Klien Kami</h2>
+                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">Pengalaman nyata dari bisnis yang telah menggunakan Gesite AI</p>
+             </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="bg-gray-50 p-8 rounded-xl shadow-md animate-fade-in">
                     <div class="flex items-center mb-4">
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                         </div>
                         <span class="ml-2 text-gray-600">4.8</span>
                     </div>
                     <p class="text-gray-700 mb-6 italic">"Setelah menggunakan Gesite AI, saya sangat terbantu dengan respon cepat 24/7. Pelanggan sering bertanya tentang ukuran atau stok produk, dan AI langsung menjawab tanpa delay. Dulu saya sering kewalahan membalas chat, sekarang pelanggan puas karena nggak perlu nunggu lama. Aku juga bisa fokus ke promosi."</p>
                     <div class="flex items-center">
                         <div class="gradient-bg rounded-full w-12 h-12 flex items-center justify-center text-white font-bold">A</div>
-                        <div class="ml-4">
-                            <h4 class="font-bold">Amanda</h4>
-                            <p class="text-gray-600">Pemilik Toko Fashion</p>
-                        </div>
+                        <div class="ml-4"><h4 class="font-bold">Amanda</h4><p class="text-gray-600">Pemilik Toko Fashion</p></div>
                     </div>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md animate-fade-in">
+                 </div>
+                 <div class="bg-gray-50 p-8 rounded-xl shadow-md animate-fade-in">
                     <div class="flex items-center mb-4">
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                         </div>
                         <span class="ml-2 text-gray-600">4.5</span>
                     </div>
                     <p class="text-gray-700 mb-6 italic">"Pak Rian kaget dengan fleksibilitas AI yang mampu menjawab pertanyaan teknis terkait jasa renovasinya. CS AI ini nggak hanya fast response, tapi pinter banget! Pelanggan saya jadi lebih percaya sama pelayanan kita. Dalam sebulan, closing deal-nya meningkat 20%."</p>
                     <div class="flex items-center">
                         <div class="gradient-bg rounded-full w-12 h-12 flex items-center justify-center text-white font-bold">R</div>
-                        <div class="ml-4">
-                            <h4 class="font-bold">Pak Rian</h4>
-                            <p class="text-gray-600">CEO Bisnis Renovasi Rumah</p>
-                        </div>
+                        <div class="ml-4"><h4 class="font-bold">Pak Rian</h4><p class="text-gray-600">CEO Bisnis Renovasi Rumah</p></div>
                     </div>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md animate-fade-in">
+                 </div>
+                 <div class="bg-gray-50 p-8 rounded-xl shadow-md animate-fade-in">
                     <div class="flex items-center mb-4">
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                         </div>
                         <span class="ml-2 text-gray-600">4.7</span>
                     </div>
                     <p class="text-gray-700 mb-6 italic">"Dian, yang sering kewalahan menangani banyak chat di waktu yang sama, merasa hidupnya jadi lebih santai. Gesite AI membantu saya banget, pelanggan jadi nggak kabur karena semua pertanyaan dijawab cepat. Bahkan kalau saya lagi libur, chat tetap ter-handle."</p>
                     <div class="flex items-center">
                         <div class="gradient-bg rounded-full w-12 h-12 flex items-center justify-center text-white font-bold">D</div>
-                        <div class="ml-4">
-                            <h4 class="font-bold">Dian</h4>
-                            <p class="text-gray-600">Penjual Makanan Kucing</p>
+                        <div class="ml-4"><h4 class="font-bold">Dian</h4><p class="text-gray-600">Penjual Makanan Kucing</p></div>
+                    </div>
+                 </div>
+             </div>
+         </div>
+    </section>
+
+    <section id="pricing" class="py-20 bg-gray-50">
+         <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                 <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Paket Harga</h2>
+                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
+             </div>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out animate-fade-in">
+                     <h3 class="text-2xl font-bold mb-4">Standard Plan</h3>
+                     <div class="text-4xl font-bold gradient-text mb-6">Rp70.000<span class="text-lg text-gray-500">/bulan</span></div>
+                     <ul class="space-y-3 mb-8">
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>30/Day</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Disarankan UMKM</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>0-100 Chat Perhari</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Active 24/7</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Set Logic</span>
+                         </li>
+                         <li class="flex items-start text-gray-400">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                             <span>ChatGPT</span>
+                         </li>
+                         <li class="flex items-start text-gray-400">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                             <span>Image Send</span>
+                         </li>
+                     </ul>
+                     <a href="https://wa.me/6289652253675?text=*Saya%20tertarik%20dengan%20Standard%20Plan%20Gesite%20AI*" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out w-full text-center font-medium block">Berlangganan</a>
+                 </div>
+                 <div class="bg-white p-8 rounded-xl shadow-xl border-2 border-blue-500 transform scale-105 z-10 animate-fade-in">
+                     <div class="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-bl-lg rounded-tr-lg text-sm font-medium">POPULER</div>
+                     <h3 class="text-2xl font-bold mb-4">Business Plan</h3>
+                     <div class="text-4xl font-bold gradient-text mb-6">Rp100.000<span class="text-lg text-gray-500">/bulan</span></div>
+                     <ul class="space-y-3 mb-8">
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>30/Day</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Pembisnis Profesional</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Up 100+ Chat Perhari</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Voice Assistant</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Active 24/7</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Set Logic</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Image Send</span>
+                         </li>
+                         <li class="flex items-start text-gray-400">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                             <span>ChatGPT</span>
+                         </li>
+                     </ul>
+                     <a href="https://wa.me/6289652253675?text=*Saya%20tertarik%20dengan%20Business%20Plan%20Gesite%20AI*" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out w-full text-center font-medium block">Berlangganan</a>
+                 </div>
+                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out animate-fade-in">
+                     <h3 class="text-2xl font-bold mb-4">Premium Plan</h3>
+                     <div class="text-4xl font-bold gradient-text mb-6">Rp150.000<span class="text-lg text-gray-500">/bulan</span></div>
+                     <ul class="space-y-3 mb-8">
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>30/Day</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Perusahaan Startup</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>400+ Chat Perhari</span>
+                         </li>
+                         <li class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                             <span>Get All Fitur</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Personalisasi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Image Send</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Live Service Team Agen</span>
+                            </li>
+                        </ul>
+                        <a href="https://wa.me/6289652253675?text=*Saya%20tertarik%20dengan%20Premium%20Plan%20Gesite%20AI*" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out w-full text-center font-medium block">Berlangganan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- CTA Section -->
+        <section class="py-20 gradient-bg text-white">
+            <div class="container mx-auto px-6 text-center animate-slide-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Siap Mengubah Cara Bisnis Anda Berkomunikasi?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">Mulai free trial 2 hari sekarang dan rasakan manfaat Gesite AI untuk bisnis Anda.</p>
+                <a href="https://wa.me/6289652253675" class="bg-white text-blue-600 px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out inline-block font-medium">Coba Gratis Sekarang</a>
+            </div>
+        </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3">
+                        <span class="text-xl font-bold">Gesite AI</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Chatbot WhatsApp canggih untuk transformasi komunikasi bisnis Anda - Fawwaz Dzaky Amrulloh</p>
+                    <div class="flex space-x-4">
+    <!-- Logo TikTok -->
+    <a href="" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
+        <svg class="h-6 w-6" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M41.5 15.5c-4.7 0-8.5-3.8-8.5-8.5h-6v27.1c0 3.2-2.6 5.9-5.9 5.9s-5.9-2.6-5.9-5.9 2.6-5.9 5.9-5.9c1 .1 2 .4 2.8.9v-6.4c-.9-.1-1.8-.2-2.8-.1-6.7 0-12.1 5.4-12.1 12.1S14.3 48 21 48s12.1-5.4 12.1-12.1V19.2c2.4 1.5 5.2 2.3 8.3 2.3v-6z"/>
+        </svg>
+    </a>
+                        <!-- Logo Instagram -->
+                        <a href="https://www.instagram.com/gesite.ai/" class="text-gray-400 hover:text-white transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm6.5-13c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5z"/>
+                            </svg>
+                        </a>
+                        <!-- Logo YouTube -->
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                            </svg>
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 animate-slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Paket Harga</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out animate-fade-in">
-                    <h3 class="text-2xl font-bold mb-4">Standard Plan</h3>
-                    <div class="text-4xl font-bold gradient-text mb-6">Rp70.000<span class="text-lg text-gray-500">/bulan</span></div>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>30/Day</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Disarankan UMKM</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>0-100 Chat Perhari</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Active 24/7</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Set Logic</span>
-                        </li>
-                        <li class="flex items-start text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            <span>ChatGPT</span>
-                        </li>
-                        <li class="flex items-start text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            <span>Image Send</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/6289652253675?text=*Saya%20tertarik%20dengan%20Standard%20Plan%20Gesite%20AI*" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out w-full text-center font-medium block">Berlangganan</a>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-xl border-2 border-blue-500 transform scale-105 z-10 animate-fade-in">
-                    <div class="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-bl-lg rounded-tr-lg text-sm font-medium">POPULER</div>
-                    <h3 class="text-2xl font-bold mb-4">Business Plan</h3>
-                    <div class="text-4xl font-bold gradient-text mb-6">Rp100.000<span class="text-lg text-gray-500">/bulan</span></div>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>30/Day</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Pembisnis Profesional</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Up 100+ Chat Perhari</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Voice Assistant</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Active 24/7</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Set Logic</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Image Send</span>
-                        </li>
-                        <li class="flex items-start text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            <span>ChatGPT</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/6289652253675?text=*Saya%20tertarik%20dengan%20Business%20Plan%20Gesite%20AI*" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out w-full text-center font-medium block">Berlangganan</a>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out animate-fade-in">
-                    <h3 class="text-2xl font-bold mb-4">Premium Plan</h3>
-                    <div class="text-4xl font-bold gradient-text mb-6">Rp150.000<span class="text-lg text-gray-500">/bulan</span></div>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>30/Day</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Perusahaan Startup</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>400+ Chat Perhari</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Get All Fitur</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Personalisasi</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Image Send</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Live Service Team Agen</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/6289652253675?text=*Saya%20tertarik%20dengan%20Premium%20Plan%20Gesite%20AI*" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out w-full text-center font-medium block">Berlangganan</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 gradient-bg text-white">
-        <div class="container mx-auto px-6 text-center animate-slide-up">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Siap Mengubah Cara Bisnis Anda Berkomunikasi?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Mulai free trial 2 hari sekarang dan rasakan manfaat Gesite AI untuk bisnis Anda.</p>
-            <a href="https://wa.me/6289652253675" class="bg-white text-blue-600 px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out inline-block font-medium">Coba Gratis Sekarang</a>
-        </div>
-    </section>
-
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-12">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center mb-4">
-                    <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3">
-                    <span class="text-xl font-bold">Gesite AI</span>
-                </div>
-                <p class="text-gray-400 mb-4">Chatbot WhatsApp canggih untuk transformasi komunikasi bisnis Anda - Fawwaz Dzaky Amrulloh</p>
-                <div class="flex space-x-4">
-<!-- Logo TikTok -->
-<a href="" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
-    <svg class="h-6 w-6" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M41.5 15.5c-4.7 0-8.5-3.8-8.5-8.5h-6v27.1c0 3.2-2.6 5.9-5.9 5.9s-5.9-2.6-5.9-5.9 2.6-5.9 5.9-5.9c1 .1 2 .4 2.8.9v-6.4c-.9-.1-1.8-.2-2.8-.1-6.7 0-12.1 5.4-12.1 12.1S14.3 48 21 48s12.1-5.4 12.1-12.1V19.2c2.4 1.5 5.2 2.3 8.3 2.3v-6z"/>
-    </svg>
-</a>
-                    <!-- Logo Instagram -->
-                    <a href="https://www.instagram.com/gesite.ai/" class="text-gray-400 hover:text-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm6.5-13c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5z"/>
-                        </svg>
-                    </a>
-                    <!-- Logo YouTube -->
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                        </svg>
-                        </a>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Tautan Cepat</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Beranda</a></li>
+                            <li><a href="#features" class="text-gray-400 hover:text-white transition">Fitur</a></li>
+                            <li><a href="#benefits" class="text-gray-400 hover:text-white transition">Manfaat</a></li>
+                            <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Harga</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Kontak</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span class="text-gray-400">infogesite.ai@gmail.com</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                <span class="text-gray-400">+62 896 5225 3675</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                        <p class="text-gray-400 mb-4">Dapatkan update terbaru tentang Gesite AI</p>
+                        <form class="flex">
+                            <input type="email" placeholder="Email Anda" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-900 w-full">
+                            <button type="submit" class="gradient-bg text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Tautan Cepat</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Beranda</a></li>
-                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Fitur</a></li>
-                        <li><a href="#benefits" class="text-gray-400 hover:text-white transition">Manfaat</a></li>
-                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Harga</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Kontak</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span class="text-gray-400">info@gesite.ai</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            <span class="text-gray-400">+62 896 5225 3675</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">Dapatkan update terbaru tentang Gesite AI</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Email Anda" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-900 w-full">
-                        <button type="submit" class="gradient-bg text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </button>
-                    </form>
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                    <p>© 2024 Gesite AI. All rights reserved.</p>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2024 Gesite AI. All rights reserved.</p>
+        </footer>
+    
+        <!-- Back to Top Button -->
+        <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+        </button>
+        <div id="chatbot-widget" class="chatbot-widget"> <div class="chat-container"> <div class="chat-header">
+            <span class="chat-header-title">Tanya Gesite AI</span>
+            <button id="close-chatbot-button" class="close-chatbot-button" aria-label="Tutup Chatbot">&times;</button>
+       </div>
+       <div class="chat-messages" id="chatbot-messages">
+           <div class="message bot-message">Halo! Ada yang ingin Anda tanyakan tentang Gesite AI?</div>
+       </div>
+       <div class="chat-input-area">
+           <div class="input-wrapper flex-grow"> <input type="text" id="chatbot-user-input" placeholder="Ketik pertanyaan..." aria-label="Input Pertanyaan Chatbot">
             </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </button>
+             <button id="chatbot-send-button" aria-label="Kirim Pesan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path d="M3.105 3.105a1.5 1.5 0 011.995-.086L17.5 9.078a1.5 1.5 0 010 2.844L5.1 17.981a1.5 1.5 0 01-1.995-.086A1.5 1.5 0 012.995 16.5v-13A1.5 1.5 0 013.105 3.105z" />
+                </svg>
+            </button>
+       </div>
+   </div>
+</div>
 
 <script>
-    // Smooth scroll untuk link navigasi
+    // --- Bagian 1: Script Asli Landing Page (Navigasi, Back-to-Top, Menu Mobile) ---
+    // Kode untuk navigasi, back-to-top, menu mobile tetap sama seperti sebelumnya
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-            
-            // Tutup menu mobile jika terbuka
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.add('hidden');
-            document.getElementById('mobile-menu-button').setAttribute('aria-expanded', 'false');
+            if (this.getAttribute('href').startsWith('#') && this.id !== 'learn-features-button') {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (this.classList.contains('nav-link-mobile') && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const mobileMenuButtonRef = document.getElementById('mobile-menu-button');
+                    if (mobileMenuButtonRef) {
+                        mobileMenuButtonRef.setAttribute('aria-expanded', 'false');
+                        const icon = mobileMenuButtonRef.querySelector('svg');
+                        if (icon) {
+                             icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>';
+                        }
+                    }
+                }
+            }
         });
     });
 
-    // Tombol kembali ke atas
     const backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.remove('opacity-0', 'invisible');
-            backToTopButton.classList.add('opacity-100', 'visible');
-        } else {
-            backToTopButton.classList.remove('opacity-100', 'visible');
-            backToTopButton.classList.add('opacity-0', 'invisible');
-        }
-    });
-
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
         });
-    });
+        backToTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
 
-    // TOGGLE MENU MOBILE (YANG DIPERBAIKI)
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            const icon = this.querySelector('svg');
+            if (icon) {
+                 if (!isExpanded) { icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; }
+                 else { icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>'; }
+            }
+        });
+         document.querySelectorAll('#mobile-menu a').forEach(link => {
+             link.addEventListener('click', () => {
+                 if (!mobileMenu.classList.contains('hidden')) {
+                     mobileMenu.classList.add('hidden');
+                     mobileMenuButton.setAttribute('aria-expanded', 'false');
+                     const icon = mobileMenuButton.querySelector('svg');
+                     if (icon) { icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>'; }
+                 }
+             });
+         });
+    }
 
-    mobileMenuButton.addEventListener('click', function() {
-        // Toggle menu (buka/tutup)
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('hidden');
-        
-        // Ubah icon hamburger jadi X saat menu terbuka
-        const icon = this.querySelector('svg');
-        if (!isExpanded) {
-            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
-        } else {
-            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>';
+    // --- Bagian 2: Script Chatbot Widget (Dengan Modifikasi) ---
+
+    const chatbotWidget = document.getElementById('chatbot-widget');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotUserInput = document.getElementById('chatbot-user-input');
+    const chatbotSendButton = document.getElementById('chatbot-send-button');
+    const learnFeaturesButton = document.getElementById('learn-features-button');
+    const closeChatbotButton = document.getElementById('close-chatbot-button');
+
+    // --- Konfigurasi API OpenRouter (Widget) ---
+    const WIDGET_OPENROUTER_API_KEY = "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"; // Ganti dengan kunci API Anda
+    const WIDGET_YOUR_SITE_URL = "https://gesitee.github.io/"; // Ganti dengan URL Anda
+    const WIDGET_YOUR_SITE_NAME = "Gesite AI Landing Page";
+    // Pilihan Model:
+    // - Model Gratis (jika masih ada): "google/gemini-pro-flash-exp:free"
+    // - Model Hemat & Cepat: "anthropic/claude-3-haiku-20240307" atau "mistralai/mistral-7b-instruct" (cek ketersediaan/harga di OpenRouter)
+    const WIDGET_OPENROUTER_MODEL = "google/gemini-2.0-flash-exp:free"; // Ganti jika perlu
+    const WIDGET_API_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+
+    // --- Riwayat Percakapan & Status ---
+    let widgetConversationHistory = [];
+    let isWaitingForResponse = false; // Flag untuk mencegah pengiriman ganda
+
+    // --- System Prompt (Dengan instruksi tambahan untuk ringkas) ---
+    const systemPrompt = {
+        role: "system",
+        content: `Anda adalah asisten AI informatif untuk Gesite AI. Gesite AI adalah platform chatbot WhatsApp canggih. Fokus utama Anda adalah menjawab pertanyaan HANYA seputar Gesite AI.
+        Informasi Kunci Gesite AI:
+        - Fungsi: Otomatisasi chat WhatsApp bisnis.
+        - Fitur: Personalisasi, Bantu Pengembangan Bisnis, Fleksibilitas, Respon 24/7.
+        - Manfaat: Efisiensi, Ketersediaan 24/7, Kepuasan Pelanggan, Kurangi Biaya, Skala Bisnis, Produktivitas, Konsistensi, Tingkatkan Penjualan.
+        - Paket: Standard (70rb/bln, UMKM, <100 chat/hr, set logic), Business (100rb/bln, populer, >100 chat/hr, voice assist, set logic, image send), Premium (150rb/bln, startup, >400 chat/hr, semua fitur, personalisasi, image send, live agent).
+        - Trial: Free trial 2 hari. Kontak WA +62 896 5225 3675.
+
+        Aturan Jawaban:
+        1. JAWAB HANYA pertanyaan terkait Gesite AI.
+        2. Jika pertanyaan di luar topik, TOLAK dengan sopan: "Maaf, saya hanya bisa menjawab pertanyaan seputar Gesite AI. Ada yang bisa saya bantu terkait Gesite AI?"
+        3. Gunakan Bahasa Indonesia yang ramah, profesional, **ringkas, dan langsung ke intinya.** Hindari penjelasan bertele-tele kecuali diminta.
+        4. JANGAN mengarang informasi. Gunakan detail di atas.
+        5. Arahkan ke WA (+62 896 5225 3675) jika ditanya cara kontak/mencoba.
+        6. Jawab Pertanyaan seringkas mungkin sependek mungkin
+        7. Respon dengan kalimat sangat singkat
+        8. Jangan pernah menggunakan kalimat yang tidak singkat dan panjang
+        ` // Penambahan instruksi ringkas di aturan nomor 3
+    };
+
+
+    // --- Fungsi Tampilan Chatbot Widget (Tidak Berubah) ---
+    function displayWidgetMessage(message, sender) { /* ... kode display message sama ... */ }
+    function showWidgetTypingIndicator() { /* ... kode typing indicator sama ... */ }
+    function removeWidgetTypingIndicator() { /* ... kode typing indicator sama ... */ }
+    function scrollWidgetToBottom() { /* ... kode scroll sama ... */ }
+
+    // --- Fungsi Logika Chatbot Widget (Dengan Pengecekan Status) ---
+    async function handleWidgetSendMessage() {
+        if (isWaitingForResponse) return; // << HEMAT API: Jangan kirim jika sedang menunggu respons
+        if (!chatbotUserInput || !chatbotMessages) return;
+
+        const userText = chatbotUserInput.value.trim();
+        if (!userText) return;
+
+        displayWidgetMessage(userText, 'user');
+        widgetConversationHistory.push({ role: "user", content: userText });
+        chatbotUserInput.value = '';
+        chatbotUserInput.disabled = true; // << HEMAT API: Nonaktifkan input saat menunggu
+        chatbotSendButton.disabled = true; // << HEMAT API: Nonaktifkan tombol saat menunggu
+        isWaitingForResponse = true; // Set flag
+        showWidgetTypingIndicator();
+
+        try {
+            const botResponse = await callWidgetOpenRouterAPI(widgetConversationHistory);
+            removeWidgetTypingIndicator();
+            displayWidgetMessage(botResponse, 'bot');
+            widgetConversationHistory.push({ role: "assistant", content: botResponse });
+
+             // HEMAT API: Batasi ukuran riwayat lebih ketat
+             if (widgetConversationHistory.length > 6) { // Simpan 3 pasang percakapan terakhir
+                widgetConversationHistory = widgetConversationHistory.slice(-6);
+             }
+
+        } catch (error) {
+            removeWidgetTypingIndicator();
+            console.error("Error calling Widget OpenRouter:", error);
+            displayWidgetMessage(`Maaf, terjadi gangguan: ${error.message || 'Tidak bisa menghubungi AI'}`, 'bot');
+        } finally {
+             chatbotUserInput.disabled = false; // << HEMAT API: Aktifkan kembali input
+             chatbotSendButton.disabled = false; // << HEMAT API: Aktifkan kembali tombol
+             isWaitingForResponse = false; // Reset flag
+             chatbotUserInput.focus(); // Fokuskan kembali ke input
         }
-    });
+    }
+
+    // --- Fungsi Panggilan API Widget (Dengan max_tokens) ---
+     async function callWidgetOpenRouterAPI(currentHistory) {
+         if (!WIDGET_OPENROUTER_API_KEY || WIDGET_OPENROUTER_API_KEY === "API") { // Cek placeholder default juga
+             console.warn("Widget: Kunci API OpenRouter belum dikonfigurasi.");
+             throw new Error("Kunci API OpenRouter belum dikonfigurasi.");
+         }
+
+         const headers = {
+             "Authorization": `Bearer ${WIDGET_OPENROUTER_API_KEY}`,
+             "Content-Type": "application/json",
+             "HTTP-Referer": WIDGET_YOUR_SITE_URL,
+             "X-Title": WIDGET_YOUR_SITE_NAME,
+         };
+
+         const messagesToSend = [systemPrompt, ...currentHistory];
+
+         const body = JSON.stringify({
+             model: WIDGET_OPENROUTER_MODEL,
+             messages: messagesToSend,
+             max_tokens: 100, // << HEMAT API & RINGKAS: Batasi panjang maksimal respons (sesuaikan nilainya)
+             // temperature: 0.7, // Opsional: Atur kreativitas (nilai lebih rendah = lebih fokus)
+         });
+
+         console.log(`Sending request to Widget OpenRouter: Model=${WIDGET_OPENROUTER_MODEL}, Messages=${messagesToSend.length}`);
+
+         try {
+            const response = await fetch(WIDGET_API_ENDPOINT, {
+                 method: "POST", headers: headers, body: body,
+            });
+
+            console.log("Widget Response Status:", response.status, response.statusText);
+
+            if (!response.ok) {
+                 let errorData = {};
+                 try { errorData = await response.json(); } catch (e) { errorData.error = { message: response.statusText || 'Unknown HTTP error' }; }
+                 console.error("Widget API Error Data:", errorData);
+                 const errorDetail = errorData.error?.message || `HTTP error! status: ${response.status}`;
+                 throw new Error(`Gagal: ${errorDetail}`); // Pesan error lebih ringkas
+            }
+
+            const data = await response.json();
+            console.log("Widget API Response Success:", data.choices ? data.choices[0]?.message?.content?.substring(0,50) + '...' : 'No choices field');
+
+            if (data.choices && data.choices.length > 0 && data.choices[0].message && data.choices[0].message.content) {
+                 return data.choices[0].message.content.trim();
+            } else {
+                 console.error("Widget: Struktur respons tidak dikenali:", data);
+                 throw new Error("Format respons API tidak valid."); // Pesan error lebih ringkas
+            }
+         } catch (networkError) {
+              console.error("Widget Network/Fetch Error:", networkError);
+              throw new Error(`Masalah jaringan: ${networkError.message}`); // Pesan error lebih ringkas
+         }
+     }
+
+
+    // --- Event Listeners Widget (Sedikit perubahan pada listener learnFeaturesButton) ---
+    if (learnFeaturesButton) {
+        learnFeaturesButton.addEventListener('click', (e) => {
+            // Jika elemennya adalah <button>, preventDefault tidak diperlukan
+            // Jika Anda kembali menggunakan <a>, uncomment baris di bawah:
+            // e.preventDefault();
+            if (chatbotWidget) { chatbotWidget.classList.add('visible'); }
+            if (chatbotUserInput) { chatbotUserInput.focus(); }
+        });
+    } else { console.warn("Tombol 'Pelajari Fitur' dengan ID 'learn-features-button' tidak ditemukan."); }
+
+    if (closeChatbotButton) { closeChatbotButton.addEventListener('click', () => { if (chatbotWidget) { chatbotWidget.classList.remove('visible'); } }); }
+    if (chatbotSendButton) { chatbotSendButton.addEventListener('click', handleWidgetSendMessage); }
+    if (chatbotUserInput) { chatbotUserInput.addEventListener('keydown', (event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleWidgetSendMessage(); } }); }
+
+
+    // --- Implementasi Fungsi Tampilan (jika belum ada dari kode sebelumnya) ---
+    // (Salin kode fungsi displayWidgetMessage, showWidgetTypingIndicator, removeWidgetTypingIndicator, scrollWidgetToBottom dari respons sebelumnya jika diperlukan)
+    function displayWidgetMessage(message, sender) {
+        if (!chatbotMessages) return;
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+        let formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        formattedMessage = formattedMessage.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        formattedMessage = formattedMessage.replace(/\n/g, '<br>');
+        messageElement.innerHTML = formattedMessage;
+        chatbotMessages.appendChild(messageElement);
+        scrollWidgetToBottom();
+    }
+    function showWidgetTypingIndicator() {
+        if (!chatbotMessages) return;
+        removeWidgetTypingIndicator();
+        const typingElement = document.createElement('div');
+        typingElement.classList.add('message', 'bot-message', 'typing-indicator');
+        typingElement.id = 'widget-typing-indicator';
+        typingElement.textContent = 'AI sedang mengetik...';
+        chatbotMessages.appendChild(typingElement);
+        scrollWidgetToBottom();
+    }
+    function removeWidgetTypingIndicator() {
+        const typingElement = document.getElementById('widget-typing-indicator');
+        if (typingElement && typingElement.parentNode === chatbotMessages) {
+            chatbotMessages.removeChild(typingElement);
+        }
+    }
+    function scrollWidgetToBottom() {
+        if (!chatbotMessages) return;
+        setTimeout(() => { chatbotMessages.scrollTop = chatbotMessages.scrollHeight; }, 50);
+    }
+
 </script>
-</body>
-</html>
+        </body>
+        </html>
