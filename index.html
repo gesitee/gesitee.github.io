@@ -304,10 +304,10 @@
                     <p class="text-xl text-gray-600 mb-8">Gesite AI membantu bisnis menangani ribuan percakapan dengan cepat, memastikan respons yang efisien dan profesional 24/7.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a href="https://wa.me/6289652253675" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out text-center font-medium">Mulai Free Trial</a>
-                        <button id="learn-features-button" class="border border-blue-500 text-blue-500 px-8 py-3 rounded-full hover:bg-blue-50 transition-all duration-300 ease-in-out text-center font-medium">Pelajari Fitur</button>
+                        <button id="learn-features-button" class="border border-blue-500 text-blue-500 px-8 py-3 rounded-full hover:bg-blue-50 transition-all duration-300 ease-in-out text-center font-medium">Tanyakan Bersama Gesite</button>
                     </div>
                 </div>
-                <img src="https://files.catbox.moe/thv4lz.png" alt="Robot AI" class="md:w-1/2 h-64 md:h-96 object-contain animate-fade-in-right">
+                <img src="https://files.catbox.moe/ikk1ie.png" alt="Ilustrasi" class="md:w-1/2 h-64 md:h-96 object-contain animate-fade-in-right">
             </div>
         </div>
     </section>
@@ -768,13 +768,13 @@
     const closeChatbotButton = document.getElementById('close-chatbot-button');
 
     // --- Konfigurasi API OpenRouter (Widget) ---
-    const WIDGET_OPENROUTER_API_KEY = "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"; // Ganti dengan kunci API Anda
+    const WIDGET_OPENROUTER_API_KEY = "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"; // Ganti dengan kunci API Anda
     const WIDGET_YOUR_SITE_URL = "https://gesitee.github.io/"; // Ganti dengan URL Anda
     const WIDGET_YOUR_SITE_NAME = "Gesite AI Landing Page";
     // Pilihan Model:
     // - Model Gratis (jika masih ada): "google/gemini-pro-flash-exp:free"
     // - Model Hemat & Cepat: "anthropic/claude-3-haiku-20240307" atau "mistralai/mistral-7b-instruct" (cek ketersediaan/harga di OpenRouter)
-    const WIDGET_OPENROUTER_MODEL = "google/gemini-2.0-flash-exp:free"; // Ganti jika perlu
+    const WIDGET_OPENROUTER_MODEL = "deepseek/deepseek-chat-v3-0324:free"; // Ganti jika perlu
     const WIDGET_API_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 
     // --- Riwayat Percakapan & Status ---
@@ -782,28 +782,32 @@
     let isWaitingForResponse = false; // Flag untuk mencegah pengiriman ganda
 
     // --- System Prompt (Dengan instruksi tambahan untuk ringkas) ---
-    const systemPrompt = {
-        role: "system",
-        content: `Anda adalah asisten AI informatif untuk Gesite AI. Gesite AI adalah platform chatbot WhatsApp canggih. Fokus utama Anda adalah menjawab pertanyaan HANYA seputar Gesite AI.
-        Informasi Kunci Gesite AI:
-        - Fungsi: Otomatisasi chat WhatsApp bisnis.
-        - Fitur: Personalisasi, Bantu Pengembangan Bisnis, Fleksibilitas, Respon 24/7.
-        - Manfaat: Efisiensi, Ketersediaan 24/7, Kepuasan Pelanggan, Kurangi Biaya, Skala Bisnis, Produktivitas, Konsistensi, Tingkatkan Penjualan.
-        - Paket: Standard (70rb/bln, UMKM, <100 chat/hr, set logic), Business (100rb/bln, populer, >100 chat/hr, voice assist, set logic, image send), Premium (150rb/bln, startup, >400 chat/hr, semua fitur, personalisasi, image send, live agent).
-        - Trial: Free trial 2 hari. Kontak WA +62 896 5225 3675.
+const systemPrompt = {
+  role: "system",
+  content: `Kamu adalah asisten AI santai dan informatif untuk Gesite AI—chatbot WhatsApp otomatis buat bantu bisnis.
 
-        Aturan Jawaban:
-        1. JAWAB HANYA pertanyaan terkait Gesite AI.
-        2. Jika pertanyaan di luar topik, TOLAK dengan sopan: "Maaf, saya hanya bisa menjawab pertanyaan seputar Gesite AI. Ada yang bisa saya bantu terkait Gesite AI?"
-        3. Gunakan Bahasa Indonesia yang ramah, profesional, **ringkas, dan langsung ke intinya.** Hindari penjelasan bertele-tele kecuali diminta.
-        4. JANGAN mengarang informasi. Gunakan detail di atas.
-        5. Arahkan ke WA (+62 896 5225 3675) jika ditanya cara kontak/mencoba.
-        6. Jawab Pertanyaan seringkas mungkin sependek mungkin
-        7. Respon dengan kalimat sangat singkat
-        8. Jangan pernah menggunakan kalimat yang tidak singkat dan panjang
-        ` // Penambahan instruksi ringkas di aturan nomor 3
-    };
+Info Penting:
+- Fungsi: Otomatisasi chat, bantu jualan, respon 24/7.
+- Fitur: Personalisasi, kirim gambar/voice, fleksibel.
+- Paket: Standard (70rb), Business (100rb), Premium (150rb).
+- Trial: Gratis 2 hari.
+- Kontak WA: +62 896 5225 3675.
 
+Gaya Jawaban:
+1. Santai, singkat, ringkas, gaul tapi tetap sopan.
+2. Jawab seperlunya aja. kalo bisa simpel singkat dan ringkas untuk Hemat kata.
+3. Kalau pertanyaannya panjang/lebar/minta detail, cukup bilang:
+   "Penjelasan lengkap bisa cek website ya"
+4. Kalau pertanyaan ngelantur (bukan soal Gesite AI), Acuhkan saja.
+5. Jangan ngarang. Gunakan info yang tersedia aja.
+
+Contoh gaya:
+- “Bisa, tinggal set logic-nya.”
+- “Cobain aja trial 2 hari, gratis kok.”
+- “Lengkapnya ada di website ya, biar jelas.”
+- “Mau fitur auto-reply atau voice assist?”
+`
+};
 
     // --- Fungsi Tampilan Chatbot Widget (Tidak Berubah) ---
     function displayWidgetMessage(message, sender) { /* ... kode display message sama ... */ }
