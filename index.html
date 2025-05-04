@@ -693,7 +693,7 @@
 
 <script>
     // --- Bagian 1: Script Asli Landing Page (Navigasi, Back-to-Top, Menu Mobile) ---
-    // Kode untuk navigasi, back-to-top, menu mobile tetap sama seperti sebelumnya
+    // ... (Kode navigasi, back-to-top, menu mobile tetap sama seperti sebelumnya) ...
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             if (this.getAttribute('href').startsWith('#') && this.id !== 'learn-features-button') {
@@ -742,11 +742,11 @@
             mobileMenu.classList.toggle('hidden');
             const icon = this.querySelector('svg');
             if (icon) {
-                 if (!isExpanded) { icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; }
+              if (!isExpanded) { icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; }
                  else { icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>'; }
             }
         });
-         document.querySelectorAll('#mobile-menu a').forEach(link => {
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
              link.addEventListener('click', () => {
                  if (!mobileMenu.classList.contains('hidden')) {
                      mobileMenu.classList.add('hidden');
@@ -757,8 +757,9 @@
              });
          });
     }
+    // --- Akhir Bagian 1 ---
 
-    // --- Bagian 2: Script Chatbot Widget (Dengan Modifikasi) ---
+    // --- Bagian 2: Script Chatbot Widget (Dimodifikasi untuk Google AI Studio) ---
 
     const chatbotWidget = document.getElementById('chatbot-widget');
     const chatbotMessages = document.getElementById('chatbot-messages');
@@ -767,25 +768,17 @@
     const learnFeaturesButton = document.getElementById('learn-features-button');
     const closeChatbotButton = document.getElementById('close-chatbot-button');
 
-    // --- Konfigurasi API OpenRouter (Widget) ---
-    const WIDGET_OPENROUTER_API_KEY = "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"; // Ganti dengan kunci API Anda
-    const WIDGET_YOUR_SITE_URL = "https://gesitee.github.io/"; // Ganti dengan URL Anda
-    const WIDGET_YOUR_SITE_NAME = "Gesite AI Landing Page";
-    // Pilihan Model:
-    // - Model Gratis (jika masih ada): "google/gemini-pro-flash-exp:free"
-    // - Model Hemat & Cepat: "anthropic/claude-3-haiku-20240307" atau "mistralai/mistral-7b-instruct" (cek ketersediaan/harga di OpenRouter)
-    const WIDGET_OPENROUTER_MODEL = "deepseek/deepseek-chat-v3-0324:free"; // Ganti jika perlu
-    const WIDGET_API_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+    // --- Konfigurasi API Google AI Studio ---
+    const GOOGLE_API_KEY = "AIzaSyDL-7dOM09DjWOmTgtw2cUHBROk_pzlYWA"; // <-- API Key Anda
+    const GOOGLE_MODEL_NAME = "gemini-1.5-flash"; // Model yang digunakan
+    const GOOGLE_API_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GOOGLE_MODEL_NAME}:generateContent?key=${GOOGLE_API_KEY}`;
 
     // --- Riwayat Percakapan & Status ---
-    let widgetConversationHistory = [];
+    let widgetConversationHistory = []; // Riwayat internal (menggunakan 'user'/'assistant')
     let isWaitingForResponse = false; // Flag untuk mencegah pengiriman ganda
 
-    // --- System Prompt (Dengan instruksi tambahan untuk ringkas) ---
-const systemPrompt = {
-  role: "system",
-  content: `Kamu adalah asisten AI santai dan informatif untuk Gesite AI—chatbot WhatsApp otomatis buat bantu bisnis.
-
+    // --- System Prompt (Isi sama, format untuk Google API diatur saat pemanggilan) ---
+    const systemPromptContent = `Kamu adalah asisten AI santai dan informatif untuk Gesite AI—chatbot WhatsApp otomatis buat bantu bisnis.
 Info Penting:
 - Fungsi: Otomatisasi chat, bantu jualan, respon 24/7.
 - Fitur: Personalisasi, kirim gambar/voice, fleksibel.
@@ -795,146 +788,30 @@ Info Penting:
 
 Gaya Jawaban:
 1. Santai, singkat, ringkas, gaul tapi tetap sopan.
-2. Jawab seperlunya aja. kalo bisa simpel singkat dan ringkas untuk Hemat kata.
-3. Kalau pertanyaannya panjang/lebar/minta detail, cukup bilang:
+2. Jawab seperlunya aja.
+3. kalo bisa simpel singkat dan ringkas untuk Hemat kata.
+4. Kalau pertanyaannya panjang/lebar/minta detail, cukup bilang:
    "Penjelasan lengkap bisa cek website ya"
-4. Kalau pertanyaan ngelantur (bukan soal Gesite AI), Acuhkan saja.
-5. Jangan ngarang. Gunakan info yang tersedia aja.
+5. Kalau pertanyaan ngelantur (bukan soal Gesite AI), Acuhkan saja.
+6. Jangan ngarang. Gunakan info yang tersedia aja.
 
 Contoh gaya:
 - “Bisa, tinggal set logic-nya.”
 - “Cobain aja trial 2 hari, gratis kok.”
 - “Lengkapnya ada di website ya, biar jelas.”
 - “Mau fitur auto-reply atau voice assist?”
-`
-};
+`;
 
     // --- Fungsi Tampilan Chatbot Widget (Tidak Berubah) ---
-    function displayWidgetMessage(message, sender) { /* ... kode display message sama ... */ }
-    function showWidgetTypingIndicator() { /* ... kode typing indicator sama ... */ }
-    function removeWidgetTypingIndicator() { /* ... kode typing indicator sama ... */ }
-    function scrollWidgetToBottom() { /* ... kode scroll sama ... */ }
-
-    // --- Fungsi Logika Chatbot Widget (Dengan Pengecekan Status) ---
-    async function handleWidgetSendMessage() {
-        if (isWaitingForResponse) return; // << HEMAT API: Jangan kirim jika sedang menunggu respons
-        if (!chatbotUserInput || !chatbotMessages) return;
-
-        const userText = chatbotUserInput.value.trim();
-        if (!userText) return;
-
-        displayWidgetMessage(userText, 'user');
-        widgetConversationHistory.push({ role: "user", content: userText });
-        chatbotUserInput.value = '';
-        chatbotUserInput.disabled = true; // << HEMAT API: Nonaktifkan input saat menunggu
-        chatbotSendButton.disabled = true; // << HEMAT API: Nonaktifkan tombol saat menunggu
-        isWaitingForResponse = true; // Set flag
-        showWidgetTypingIndicator();
-
-        try {
-            const botResponse = await callWidgetOpenRouterAPI(widgetConversationHistory);
-            removeWidgetTypingIndicator();
-            displayWidgetMessage(botResponse, 'bot');
-            widgetConversationHistory.push({ role: "assistant", content: botResponse });
-
-             // HEMAT API: Batasi ukuran riwayat lebih ketat
-             if (widgetConversationHistory.length > 6) { // Simpan 3 pasang percakapan terakhir
-                widgetConversationHistory = widgetConversationHistory.slice(-6);
-             }
-
-        } catch (error) {
-            removeWidgetTypingIndicator();
-            console.error("Error calling Widget OpenRouter:", error);
-            displayWidgetMessage(`Maaf, terjadi gangguan: ${error.message || 'Tidak bisa menghubungi AI'}`, 'bot');
-        } finally {
-             chatbotUserInput.disabled = false; // << HEMAT API: Aktifkan kembali input
-             chatbotSendButton.disabled = false; // << HEMAT API: Aktifkan kembali tombol
-             isWaitingForResponse = false; // Reset flag
-             chatbotUserInput.focus(); // Fokuskan kembali ke input
-        }
-    }
-
-    // --- Fungsi Panggilan API Widget (Dengan max_tokens) ---
-     async function callWidgetOpenRouterAPI(currentHistory) {
-         if (!WIDGET_OPENROUTER_API_KEY || WIDGET_OPENROUTER_API_KEY === "API") { // Cek placeholder default juga
-             console.warn("Widget: Kunci API OpenRouter belum dikonfigurasi.");
-             throw new Error("Kunci API OpenRouter belum dikonfigurasi.");
-         }
-
-         const headers = {
-             "Authorization": `Bearer ${WIDGET_OPENROUTER_API_KEY}`,
-             "Content-Type": "application/json",
-             "HTTP-Referer": WIDGET_YOUR_SITE_URL,
-             "X-Title": WIDGET_YOUR_SITE_NAME,
-         };
-
-         const messagesToSend = [systemPrompt, ...currentHistory];
-
-         const body = JSON.stringify({
-             model: WIDGET_OPENROUTER_MODEL,
-             messages: messagesToSend,
-             max_tokens: 100, // << HEMAT API & RINGKAS: Batasi panjang maksimal respons (sesuaikan nilainya)
-             // temperature: 0.7, // Opsional: Atur kreativitas (nilai lebih rendah = lebih fokus)
-         });
-
-         console.log(`Sending request to Widget OpenRouter: Model=${WIDGET_OPENROUTER_MODEL}, Messages=${messagesToSend.length}`);
-
-         try {
-            const response = await fetch(WIDGET_API_ENDPOINT, {
-                 method: "POST", headers: headers, body: body,
-            });
-
-            console.log("Widget Response Status:", response.status, response.statusText);
-
-            if (!response.ok) {
-                 let errorData = {};
-                 try { errorData = await response.json(); } catch (e) { errorData.error = { message: response.statusText || 'Unknown HTTP error' }; }
-                 console.error("Widget API Error Data:", errorData);
-                 const errorDetail = errorData.error?.message || `HTTP error! status: ${response.status}`;
-                 throw new Error(`Gagal: ${errorDetail}`); // Pesan error lebih ringkas
-            }
-
-            const data = await response.json();
-            console.log("Widget API Response Success:", data.choices ? data.choices[0]?.message?.content?.substring(0,50) + '...' : 'No choices field');
-
-            if (data.choices && data.choices.length > 0 && data.choices[0].message && data.choices[0].message.content) {
-                 return data.choices[0].message.content.trim();
-            } else {
-                 console.error("Widget: Struktur respons tidak dikenali:", data);
-                 throw new Error("Format respons API tidak valid."); // Pesan error lebih ringkas
-            }
-         } catch (networkError) {
-              console.error("Widget Network/Fetch Error:", networkError);
-              throw new Error(`Masalah jaringan: ${networkError.message}`); // Pesan error lebih ringkas
-         }
-     }
-
-
-    // --- Event Listeners Widget (Sedikit perubahan pada listener learnFeaturesButton) ---
-    if (learnFeaturesButton) {
-        learnFeaturesButton.addEventListener('click', (e) => {
-            // Jika elemennya adalah <button>, preventDefault tidak diperlukan
-            // Jika Anda kembali menggunakan <a>, uncomment baris di bawah:
-            // e.preventDefault();
-            if (chatbotWidget) { chatbotWidget.classList.add('visible'); }
-            if (chatbotUserInput) { chatbotUserInput.focus(); }
-        });
-    } else { console.warn("Tombol 'Pelajari Fitur' dengan ID 'learn-features-button' tidak ditemukan."); }
-
-    if (closeChatbotButton) { closeChatbotButton.addEventListener('click', () => { if (chatbotWidget) { chatbotWidget.classList.remove('visible'); } }); }
-    if (chatbotSendButton) { chatbotSendButton.addEventListener('click', handleWidgetSendMessage); }
-    if (chatbotUserInput) { chatbotUserInput.addEventListener('keydown', (event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleWidgetSendMessage(); } }); }
-
-
-    // --- Implementasi Fungsi Tampilan (jika belum ada dari kode sebelumnya) ---
-    // (Salin kode fungsi displayWidgetMessage, showWidgetTypingIndicator, removeWidgetTypingIndicator, scrollWidgetToBottom dari respons sebelumnya jika diperlukan)
     function displayWidgetMessage(message, sender) {
         if (!chatbotMessages) return;
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
-        let formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        formattedMessage = formattedMessage.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        formattedMessage = formattedMessage.replace(/\n/g, '<br>');
+        // Format dasar (bold, italic, newline)
+        let formattedMessage = message
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
         messageElement.innerHTML = formattedMessage;
         chatbotMessages.appendChild(messageElement);
         scrollWidgetToBottom();
@@ -960,6 +837,139 @@ Contoh gaya:
         setTimeout(() => { chatbotMessages.scrollTop = chatbotMessages.scrollHeight; }, 50);
     }
 
+    // --- Fungsi Logika Chatbot Widget (Memanggil Google API) ---
+    async function handleWidgetSendMessage() {
+        if (isWaitingForResponse) return; // Jangan kirim jika sedang menunggu
+        if (!chatbotUserInput || !chatbotMessages) return;
+        const userText = chatbotUserInput.value.trim();
+        if (!userText) return;
+
+        displayWidgetMessage(userText, 'user');
+        // Tambahkan ke riwayat internal sebagai 'user'
+        widgetConversationHistory.push({ role: "user", content: userText });
+        chatbotUserInput.value = '';
+        chatbotUserInput.disabled = true;
+        chatbotSendButton.disabled = true;
+        isWaitingForResponse = true;
+        showWidgetTypingIndicator();
+
+        try {
+            // Panggil fungsi API Google Gemini
+            const botResponse = await callGoogleGeminiAPI(widgetConversationHistory);
+            removeWidgetTypingIndicator();
+            displayWidgetMessage(botResponse, 'bot');
+             // Tambahkan ke riwayat internal sebagai 'assistant' (meskipun API Google pakai 'model')
+            widgetConversationHistory.push({ role: "assistant", content: botResponse });
+
+            // Batasi ukuran riwayat (opsional, sesuaikan jika perlu)
+            if (widgetConversationHistory.length > 6) { // Simpan 3 pasang percakapan
+               widgetConversationHistory = widgetConversationHistory.slice(-6);
+            }
+
+        } catch (error) {
+            removeWidgetTypingIndicator();
+            console.error("Error calling Google Gemini API:", error);
+            displayWidgetMessage(`Maaf, terjadi gangguan: ${error.message || 'Tidak bisa menghubungi AI'}`, 'bot');
+        } finally {
+             chatbotUserInput.disabled = false;
+             chatbotSendButton.disabled = false;
+             isWaitingForResponse = false;
+             chatbotUserInput.focus();
+        }
+    }
+
+    // --- Fungsi Panggilan API Google Gemini ---
+     async function callGoogleGeminiAPI(currentInternalHistory) {
+         if (!GOOGLE_API_KEY || GOOGLE_API_KEY === "AIzaSyDL-7dOM09DjWOmTgtw2cUHBROk_pzlYWA" && GOOGLE_API_KEY.includes("DEFAULT")) { // Cek placeholder default sederhana
+             console.warn("Google API Key belum dikonfigurasi.");
+             throw new Error("Kunci API Google belum dikonfigurasi.");
+         }
+
+         // Transformasi riwayat internal ('user'/'assistant') ke format Google ('user'/'model')
+         const googleApiHistory = currentInternalHistory.map(item => ({
+             role: item.role === 'assistant' ? 'model' : 'user', // Ubah 'assistant' ke 'model'
+             parts: [{ text: item.content }]
+         }));
+
+         const headers = {
+             "Content-Type": "application/json",
+         };
+
+         const body = JSON.stringify({
+             contents: googleApiHistory, // Riwayat yang sudah diformat
+             // Tambahkan system instruction di sini
+             systemInstruction: {
+                 parts: [{ text: systemPromptContent }]
+             },
+             // Konfigurasi generasi (opsional, contoh: batasi token output)
+             generationConfig: {
+                // "temperature": 0.7, // Uncomment untuk mengatur kreativitas
+                "maxOutputTokens": 150 // Batasi panjang respons sedikit lebih panjang dari OpenRouter
+             }
+         });
+
+         console.log(`Sending request to Google Gemini: Model=${GOOGLE_MODEL_NAME}, History Size=${googleApiHistory.length}`);
+
+         try {
+            const response = await fetch(GOOGLE_API_ENDPOINT, {
+                 method: "POST",
+                 headers: headers,
+                 body: body,
+            });
+            console.log("Google API Response Status:", response.status, response.statusText);
+
+            if (!response.ok) {
+                 let errorData = {};
+                 try {
+                    errorData = await response.json();
+                    console.error("Google API Error Data:", errorData);
+                    // Coba ekstrak pesan error spesifik dari Google
+                    const detail = errorData.error?.message || `HTTP error! status: ${response.status}`;
+                    throw new Error(`Gagal [API]: ${detail}`);
+                 } catch (e) {
+                    console.error("Failed to parse error JSON or unknown HTTP error", e);
+                    throw new Error(`Gagal [HTTP]: ${response.statusText || `status code ${response.status}`}`);
+                 }
+            }
+
+            const data = await response.json();
+            // console.log("Google API Response Success:", data); // Log full response jika perlu debug
+
+            // Ekstrak teks dari kandidat pertama
+            if (data.candidates && data.candidates.length > 0 &&
+                data.candidates[0].content && data.candidates[0].content.parts &&
+                data.candidates[0].content.parts.length > 0 && data.candidates[0].content.parts[0].text) {
+                 return data.candidates[0].content.parts[0].text.trim();
+            } else if (data.candidates && data.candidates[0]?.finishReason) {
+                 // Jika ada alasan selesai tapi tidak ada teks (misal: diblokir karena safety)
+                 console.warn(`Google API finished with reason: ${data.candidates[0].finishReason}`);
+                 throw new Error(`Tidak ada respons teks (Reason: ${data.candidates[0].finishReason}). Coba periksa safety settings di Google AI Studio.`);
+            }
+             else {
+                 console.error("Google API: Struktur respons tidak dikenali atau teks kosong:", data);
+                 throw new Error("Format respons API tidak valid atau teks kosong.");
+            }
+         } catch (networkOrApiError) { // Menangkap error dari fetch atau error yang dilempar di atas
+              console.error("Google Network/API Error:", networkOrApiError);
+              // Menggunakan pesan error yang sudah diformat dari blok catch di atas jika ada
+              throw new Error(networkOrApiError.message || "Masalah jaringan atau API tidak dikenal.");
+         }
+     }
+
+
+    // --- Event Listeners Widget (Tidak berubah) ---
+    if (learnFeaturesButton) {
+        learnFeaturesButton.addEventListener('click', (e) => {
+            if (chatbotWidget) { chatbotWidget.classList.add('visible'); }
+            if (chatbotUserInput) { chatbotUserInput.focus(); }
+        });
+    } else { console.warn("Tombol 'Pelajari Fitur' dengan ID 'learn-features-button' tidak ditemukan."); }
+
+    if (closeChatbotButton) { closeChatbotButton.addEventListener('click', () => { if (chatbotWidget) { chatbotWidget.classList.remove('visible'); } }); }
+    if (chatbotSendButton) { chatbotSendButton.addEventListener('click', handleWidgetSendMessage); }
+    if (chatbotUserInput) { chatbotUserInput.addEventListener('keydown', (event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleWidgetSendMessage(); } }); }
+
 </script>
+
         </body>
         </html>
