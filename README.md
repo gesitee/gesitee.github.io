@@ -1,4 +1,3 @@
-# Gesite AI
 <p align="center">
   <strong>Chatbot WhatsApp Pintar untuk Bisnis Responsif 24/7</strong>
 </p>
