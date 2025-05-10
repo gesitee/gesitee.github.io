@@ -112,7 +112,7 @@
                             <div>
                                 <h4 class="font-semibold mb-1 text-sm">Informasi Penting:</h4>
                                 <ul class="list-disc list-inside text-xs sm:text-sm space-y-1">
-                                    <li>Penggunaan Kode Referral hanya Opsional tidak wajib.</li>
+                                    <li>Pada bagian Kode Referral hanya Opsional boleh kosong.</li>
                                     <li>Pastikan email dan nomor WhatsApp yang Anda masukkan aktif.</li>
                                     <li>Nomor WhatsApp akan divalidasi keaktifannya.</li>
                                 </ul>
@@ -162,7 +162,7 @@
         }
         
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            // Kode untuk current-year sudah dihapus dari sini
 
             const paketId = getUrlParameter('paket');
             const durasiUrl = getUrlParameter('durasi'); 
@@ -174,6 +174,7 @@
             const hiddenHargaInput = document.getElementById('hidden-harga-total');
             const submitButton = document.getElementById('submit-form-button');
             const formMessage = document.getElementById('form-message');
+
 
             if (paketId && paketDisplayData[paketId] && durasiUrl && hargaTotal) {
                 const namaPaketLengkap = paketDisplayData[paketId].nama;
@@ -190,76 +191,78 @@
 
             } else {
                 ringkasanPaketContainer.innerHTML = '<p class="text-red-600 font-medium">Detail paket tidak lengkap atau tidak valid. Silakan kembali dan pilih paket Anda.</p>';
-                submitButton.disabled = true;
-                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+                if(submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+                }
             }
 
             const ubahPaketButton = document.getElementById('ubah-paket-button');
-            ubahPaketButton.addEventListener('click', function() {
-                window.location.href = `Langganan.html${paketId ? '?paket=' + paketId : ''}`;
-            });
+            if (ubahPaketButton) {
+                ubahPaketButton.addEventListener('click', function() {
+                    window.location.href = `Langganan.html${paketId ? '?paket=' + paketId : ''}`;
+                });
+            }
+
 
             const customerForm = document.getElementById('customer-form');
             const submitButtonText = document.getElementById('submit-button-text');
             const submitButtonSpinner = document.getElementById('submit-button-spinner');
 
-            customerForm.addEventListener('submit', function(event) {
-                event.preventDefault(); 
-                formMessage.textContent = ''; 
+            if (customerForm && submitButton) {
+                customerForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); 
+                    formMessage.textContent = ''; 
 
-                // Pengecekan URL placeholder yang benar
-                if (GOOGLE_APPS_SCRIPT_URL === "MASUKKAN_URL_WEB_APP_APPS_SCRIPT_ANDA_DI_SINI") { 
-                    formMessage.textContent = 'Kesalahan konfigurasi: URL endpoint belum diatur.';
-                    formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
-                    return;
-                }
-
-                submitButtonText.textContent = 'Mengirim...';
-                submitButtonSpinner.classList.remove('hidden');
-                submitButton.disabled = true;
-
-                const formData = new FormData(customerForm);
-                
-                fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.result === "success") {
-                        formMessage.textContent = "Data formulir berhasil dikirim! Anda akan diarahkan ke halaman pembayaran...";
-                        formMessage.className = 'mb-4 text-sm text-green-600 font-medium';
-                        
-                        // Ambil data yang diperlukan untuk halaman pembayaran DARI FORM INPUT
-                        const hargaFinalRedirect = document.getElementById('hidden-harga-total').value;
-                        const namaPelangganRedirect = document.getElementById('nama-lengkap').value;
-                        const namaPaketLengkapRedirect = document.getElementById('hidden-paket-dipilih').value;
-                        const durasiPaketLengkapRedirect = document.getElementById('hidden-durasi-dipilih').value;
-
-                        // Arahkan ke halaman pembayaran setelah beberapa saat
-                        setTimeout(() => {
-                            window.location.href = `pembayaran.html?harga=${hargaFinalRedirect}&nama=${encodeURIComponent(namaPelangganRedirect)}&paketNama=${encodeURIComponent(namaPaketLengkapRedirect)}&durasiNama=${encodeURIComponent(durasiPaketLengkapRedirect)}`;
-                        }, 2000); // Tunggu 2 detik sebelum redirect
-
-                    } else {
-                        formMessage.textContent = "Maaf, terjadi kesalahan saat mengirim data formulir: " + (data.message || "Tidak dapat mengirim data.");
+                    if (GOOGLE_APPS_SCRIPT_URL === "MASUKKAN_URL_WEB_APP_APPS_SCRIPT_ANDA_DI_SINI") { 
+                        formMessage.textContent = 'Kesalahan konfigurasi: URL endpoint belum diatur.';
                         formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
-                        // Kembalikan tombol ke keadaan semula jika gagal
-                        submitButtonText.textContent = 'Lanjut \u2192';
-                        submitButtonSpinner.classList.add('hidden');
-                        submitButton.disabled = false;
+                        return;
                     }
-                })
-                .catch(error => {
-                    console.error('Error submitting form:', error);
-                    formMessage.textContent = "Terjadi kesalahan jaringan atau server. Silakan coba lagi nanti.";
-                    formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
-                    // Kembalikan tombol ke keadaan semula jika gagal
-                    submitButtonText.textContent = 'Lanjut \u2192';
-                    submitButtonSpinner.classList.add('hidden');
-                    submitButton.disabled = false;
+
+                    submitButtonText.textContent = 'Mengirim...';
+                    if(submitButtonSpinner) submitButtonSpinner.classList.remove('hidden');
+                    submitButton.disabled = true;
+
+                    const formData = new FormData(customerForm);
+                    
+                    fetch(GOOGLE_APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.result === "success") {
+                            formMessage.textContent = "Data formulir berhasil dikirim! Anda akan diarahkan ke halaman pembayaran...";
+                            formMessage.className = 'mb-4 text-sm text-green-600 font-medium';
+                            
+                            const hargaFinalRedirect = document.getElementById('hidden-harga-total').value;
+                            const namaPelangganRedirect = document.getElementById('nama-lengkap').value;
+                            const namaPaketLengkapRedirect = document.getElementById('hidden-paket-dipilih').value;
+                            const durasiPaketLengkapRedirect = document.getElementById('hidden-durasi-dipilih').value;
+
+                            setTimeout(() => {
+                                window.location.href = `pembayaran.html?harga=${hargaFinalRedirect}&nama=${encodeURIComponent(namaPelangganRedirect)}&paketNama=${encodeURIComponent(namaPaketLengkapRedirect)}&durasiNama=${encodeURIComponent(durasiPaketLengkapRedirect)}`;
+                            }, 2000); 
+
+                        } else {
+                            formMessage.textContent = "Maaf, terjadi kesalahan saat mengirim data formulir: " + (data.message || "Tidak dapat mengirim data.");
+                            formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
+                            submitButtonText.textContent = 'Lanjut \u2192';
+                            if(submitButtonSpinner) submitButtonSpinner.classList.add('hidden');
+                            submitButton.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error submitting form:', error);
+                        formMessage.textContent = "Terjadi kesalahan jaringan atau server. Silakan coba lagi nanti.";
+                        formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
+                        submitButtonText.textContent = 'Lanjut \u2192';
+                        if(submitButtonSpinner) submitButtonSpinner.classList.add('hidden');
+                        submitButton.disabled = false;
+                    });
                 });
-            });
+            }
         });
     </script>
 </body>
