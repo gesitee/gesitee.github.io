@@ -8,15 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Warna Utama Website dari index.html */
             --primary-blue: #2563eb;
             --primary-green: #10b981;
-            --dark-blue: #1e40af;
-            --dark-green: #059669;
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f9fafb; /* Match bg-gray-50 */
+            background-color: #f9fafb;
         }
         .gradient-text {
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
@@ -28,13 +25,13 @@
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
         }
         .tab-button {
-            padding: 0.75rem 1.5rem; /* py-3 px-6 */
-            border-radius: 9999px; /* rounded-full */
-            font-weight: 500; /* font-medium */
-            color: #4b5563; /* text-gray-600 */
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            color: #4b5563;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
-            margin: 0.25rem; /* Menambah sedikit jarak antar tombol */
+            margin: 0.25rem;
         }
         .tab-button.active {
             background-color: var(--primary-blue);
@@ -42,13 +39,13 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         .tab-button:not(.active):hover {
-            background-color: #e5e7eb; /* bg-gray-200 for hover on non-active */
+            background-color: #e5e7eb;
         }
         .duration-card {
-            border: 1px solid #e5e7eb; /* border-gray-200 */
-            border-radius: 0.75rem; /* rounded-xl */
-            padding: 1.5rem; /* p-6 */
-            margin-bottom: 1rem; /* mb-4 */
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
         }
@@ -58,14 +55,14 @@
         }
         .duration-card.selected {
             border-color: var(--primary-blue);
-            background-color: #eff6ff; /* blue-50 */
+            background-color: #eff6ff;
             box-shadow: 0 0 0 2px var(--primary-blue);
         }
-        .checkmark-icon { /* Style for the checkmark */
+        .checkmark-icon {
             color: var(--primary-blue);
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
-            min-width: 24px; /* Memastikan ikon punya ruang */
+            min-width: 24px;
         }
         .duration-card.selected .checkmark-icon {
             opacity: 1;
@@ -76,8 +73,15 @@
     <nav class="fixed w-full bg-white shadow-sm z-50">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center">
-                <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3"> <span class="text-xl font-bold gradient-text">Gesite AI</span>
+                <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3">
+                <span class="text-xl font-bold gradient-text">Gesite AI</span>
             </div>
+            <div>
+                <a href="index.html#pricing" class="text-gray-600 hover:text-blue-500 transition font-medium">
+                    &larr; Kembali ke Pilihan Awal
+                </a>
+            </div>
+        </div>
     </nav>
 
     <section id="pilih-langganan" class="pt-28 pb-16 px-4 md:px-6">
@@ -122,24 +126,12 @@
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-10 mt-16">
-        <div class="container mx-auto px-6 text-center text-gray-400 text-sm">
-            <p>&copy; <span id="current-year"></span> Gesite AI. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
         const paketData = {
             standard: {
                 nama: "Standard Plan",
                 deskripsi: "Cocok untuk UMKM dan bisnis yang baru memulai.",
-                fitur: [
-                    "30 Pesan AI / Hari",
-                    "Disarankan untuk UMKM",
-                    "0-100 Chat Perhari",
-                    "Aktif 24/7",
-                    "Set Logic Flow Dasar"
-                ],
+                fitur: ["30 Pesan AI / Hari", "Disarankan untuk UMKM", "0-100 Chat Perhari", "Aktif 24/7", "Set Logic Flow Dasar"],
                 durasi: [
                     { nama: "1 Bulan", hargaAsli: null, hargaDiskon: 70000, perBulan: 70000, default: true },
                     { nama: "3 Bulan", hargaAsli: 210000, hargaDiskon: 195000, perBulan: 65000 },
@@ -149,15 +141,7 @@
             business: {
                 nama: "Business Plan",
                 deskripsi: "Untuk pebisnis profesional yang butuh fitur lebih lengkap.",
-                fitur: [
-                    "Unlimited Pesan AI / Hari",
-                    "Rekomendasi untuk Pebisnis Profesional",
-                    "100+ Chat Perhari",
-                    "Voice Assistant",
-                    "Aktif 24/7",
-                    "Set Logic Flow Lanjutan",
-                    "Kirim Gambar Otomatis"
-                ],
+                fitur: ["Unlimited Pesan AI / Hari", "Rekomendasi untuk Pebisnis Profesional", "100+ Chat Perhari", "Voice Assistant", "Aktif 24/7", "Set Logic Flow Lanjutan", "Kirim Gambar Otomatis"],
                 durasi: [
                     { nama: "1 Bulan", hargaAsli: null, hargaDiskon: 100000, perBulan: 100000, default: true },
                     { nama: "3 Bulan", hargaAsli: 300000, hargaDiskon: 270000, perBulan: 90000 },
@@ -168,14 +152,7 @@
             premium: {
                 nama: "Premium Plan",
                 deskripsi: "Solusi komprehensif untuk perusahaan dan startup.",
-                fitur: [
-                    "Semua fitur Business Plan",
-                    "ChatGPT Integration (Optional)",
-                    "400+ Chat Perhari",
-                    "Personalisasi AI Tingkat Tinggi",
-                    "Dukungan Prioritas",
-                    "Live Service Team Agent"
-                ],
+                fitur: ["Semua fitur Business Plan", "ChatGPT Integration (Optional)", "400+ Chat Perhari", "Personalisasi AI Tingkat Tinggi", "Dukungan Prioritas", "Live Service Team Agent"],
                 durasi: [
                     { nama: "1 Bulan", hargaAsli: null, hargaDiskon: 150000, perBulan: 150000, default: true },
                     { nama: "3 Bulan", hargaAsli: 450000, hargaDiskon: 420000, perBulan: 140000 },
@@ -185,7 +162,7 @@
             }
         };
 
-        let paketAktif = 'business'; // Default ke paket populer
+        let paketAktif = 'business';
         let durasiAktif = null;
 
         const tabButtons = document.querySelectorAll('.tab-button');
@@ -193,7 +170,7 @@
         const durasiContainer = document.getElementById('durasi-container');
         const lanjutButton = document.getElementById('lanjut-button');
         
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Kode untuk current-year sudah dihapus dari sini
 
         function formatRupiah(angka) {
             if (angka === null || angka === undefined) return '';
@@ -206,23 +183,17 @@
                 infoPaketContainer.innerHTML = '<p class="text-gray-600">Informasi paket tidak ditemukan.</p>';
                 return;
             }
-
             let fiturHtml = data.fitur.map(fitur => `
                 <li class="flex items-start text-gray-700">
                     <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                     <span>${fitur}</span>
-                </li>
-            `).join('');
-
+                </li>`).join('');
             infoPaketContainer.innerHTML = `
                 <h2 class="text-2xl font-bold mb-3 text-gray-800">${data.nama}</h2>
                 <p class="text-gray-600 mb-4 text-sm sm:text-base">${data.deskripsi}</p>
-                <ul class="space-y-1.5 text-sm">
-                    ${fiturHtml}
-                </ul>
-            `;
+                <ul class="space-y-1.5 text-sm">${fiturHtml}</ul>`;
         }
 
         function renderDurasi(idPaket) {
@@ -231,7 +202,6 @@
                 durasiContainer.innerHTML = '<p class="text-gray-600">Pilihan durasi tidak tersedia.</p>';
                 return;
             }
-
             let durasiHtml = data.durasi.map((item, index) => `
                 <div class="duration-card ${item.default && idPaket === paketAktif ? 'selected' : ''}" data-durasi-index="${index}">
                     <div class="flex justify-between items-center">
@@ -243,21 +213,19 @@
                         </div>
                         <svg class="w-6 h-6 checkmark-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     </div>
-                </div>
-            `).join('');
+                </div>`).join('');
             durasiContainer.innerHTML = durasiHtml;
             
             const defaultDurasiData = data.durasi.find(d => d.default);
-            if (idPaket === paketAktif && defaultDurasiData) { // Hanya set durasi aktif jika paketnya adalah paket aktif saat ini
+            if (idPaket === paketAktif && defaultDurasiData) {
                  durasiAktif = defaultDurasiData;
             } else if (data.durasi.length > 0 && idPaket === paketAktif) {
-                durasiAktif = data.durasi[0]; // Jika tidak ada default, pilih yang pertama untuk paket aktif
+                durasiAktif = data.durasi[0];
                 const firstCard = durasiContainer.querySelector('.duration-card');
                 if(firstCard) firstCard.classList.add('selected');
             } else if (idPaket !== paketAktif) {
-                durasiAktif = null; // Reset durasi aktif jika paket berubah dan belum ada yang dipilih
+                durasiAktif = null;
             }
-
 
             document.querySelectorAll('.duration-card').forEach(card => {
                 card.addEventListener('click', function() {
@@ -281,26 +249,28 @@
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 paketAktif = this.dataset.paket;
-                durasiAktif = null; // Reset durasi aktif saat ganti paket utama
+                durasiAktif = null;
                 renderInfoPaket(paketAktif);
-                renderDurasi(paketAktif); // Ini akan memilih default durasi untuk paket baru
+                renderDurasi(paketAktif);
             });
         });
 
-        lanjutButton.addEventListener('click', function() {
-            if (paketAktif && durasiAktif) {
-                window.location.href = `halaman-formulir.html?paket=${paketAktif}&durasi=${durasiAktif.nama.replace(/\s+/g, '-').toLowerCase()}&harga=${durasiAktif.hargaDiskon}`;
-            } else {
-                alert("Silakan pilih paket dan durasi terlebih dahulu.");
-            }
-        });
+        if(lanjutButton) { // Tambah pengecekan null
+            lanjutButton.addEventListener('click', function() {
+                if (paketAktif && durasiAktif) {
+                    window.location.href = `halaman-formulir.html?paket=${paketAktif}&durasi=${durasiAktif.nama.replace(/\s+/g, '-').toLowerCase()}&harga=${durasiAktif.hargaDiskon}`;
+                } else {
+                    alert("Silakan pilih paket dan durasi terlebih dahulu.");
+                }
+            });
+        }
         
         function initPage() {
             const paketDariUrl = getUrlParameter('paket'); 
             if (paketDariUrl && paketData[paketDariUrl]) {
                 paketAktif = paketDariUrl;
             } else {
-                paketAktif = 'business'; // Default jika tidak ada parameter atau parameter tidak valid
+                paketAktif = 'business';
             }
             
             tabButtons.forEach(btn => {
@@ -311,7 +281,7 @@
             });
 
             renderInfoPaket(paketAktif);
-            renderDurasi(paketAktif); // Ini akan memilih default durasi untuk paket aktif awal
+            renderDurasi(paketAktif);
         }
 
         initPage();
