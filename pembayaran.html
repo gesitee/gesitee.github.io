@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Pembayaran - Gesite AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Warna Utama Website dari index.html */
+            --primary-blue: #2563eb;
+            --primary-green: #10b981;
+            --dark-blue: #1e40af;
+            --dark-green: #059669;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb; /* Match bg-gray-50 */
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-bg { /* Tidak digunakan langsung di sini, tapi jaga konsistensi */
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+        }
+        .info-box-warning {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            color: #1e40af;
+        }
+        .qris-container {
+            max-width: 280px; /* Kontrol ukuran QRIS agar tidak terlalu besar */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        }
+        .qris-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-start"> <div class="flex items-center">
+                <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3"> <span class="text-xl font-bold gradient-text">Gesite AI</span>
+            </div>
+            </div>
+    </nav>
+
+    <section id="info-pembayaran" class="pt-28 pb-16 px-4 md:px-6">
+        <div class="container mx-auto max-w-lg"> <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl">
+                <div class="text-left mb-6"> <h1 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800">Informasi Pembayaran</h1>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-xl text-center mb-8 shadow">
+                    <p class="text-sm text-blue-700 mb-1">Pembayaran QRIS</p>
+                    <p id="jumlah-pembayaran" class="text-3xl font-bold text-blue-600 mb-2">Rp 0</p> <p class="text-xs text-gray-500">Berakhir pada: <span id="batas-waktu-pembayaran" class="font-medium">Memuat...</span></p>
+                </div>
+
+                <div class="text-center mb-6">
+                    <p class="text-gray-700 font-medium mb-4">Pindai QR Code dengan Aplikasi e-wallet atau m-banking</p>
+                    <div class="qris-container">
+                        <img src="https://files.catbox.moe/l7mj7h.jpg" alt="QRIS Code Pembayaran Gesite AI" class="qris-image">
+                    </div>
+                    <a href="https://files.catbox.moe/l7mj7h.jpg" download="QRIS_Gesite_AI.jpg" class="mt-6 inline-flex items-center justify-center px-6 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                        Unduh QR Code
+                    </a>
+                </div>
+
+                <div class="info-box-warning mb-8">
+                    <div class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <div>
+                            <h4 class="font-semibold mb-1 text-sm">Sudah Bayar?</h4>
+                            <p class="text-xs sm:text-sm">
+                                Jika Anda sudah melakukan pembayaran, silakan gunakan tombol "Konfirmasi via WhatsApp" di bawah untuk menghubungi tim support kami.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a id="konfirmasi-wa-button" href="https://wa.me/6289652253675?text=Halo%20Gesite%20AI%2C%20saya%20sudah%20melakukan%20pembayaran%20untuk%20pesanan%20[Nama%20Pelanggan]%20paket%20[Nama%20Paket]%20[Durasi%20Paket]%20sebesar%20[Jumlah%20Pembayaran]." target="_blank" rel="noopener noreferrer"
+                       class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M18.965 15.035c-.338-.169-.684-.253-1.035-.253-.398 0-.77.09-1.112.273-.341.182-.512.434-.512.752v.008c0 .07.004.137.012.2.024.182.087.38.19.593.103.214.201.385.293.512.182.253.273.494.273.723 0 .253-.076.466-.23.637-.152.171-.35.257-.593.257-.253 0-.56-.09-.92-.274-.36-.182-.78-.434-1.261-.752-.48-.318-1.009-.752-1.583-1.298-.575-.547-1.029-1.122-1.362-1.725-.333-.604-.5-1.21-.5-1.818s.167-1.18.5-1.724c.334-.546.77-.995 1.308-1.352.538-.356 1.054-.592 1.549-.708.494-.116.984-.174 1.469-.174.484 0 .952.058 1.403.174.45.116.834.308 1.15.575.318.267.558.525.723.77.164.244.246.43.246.557v.008c0 .07-.004.137-.012.2-.024.182-.087.38-.19.593-.103.214-.201.385-.293.512-.182.253-.273.494-.273.723 0 .253.08.466.242.637.164.171.371.257.621.257.298 0 .583-.099.853-.298.27-.2.48-.43.625-.691.146-.26.219-.534.219-.822V12.97c0-.48-.12-.907-.358-1.283-.239-.376-.54-.682-.905-.918-.366-.237-.75-.396-1.15-.479-.4-.083-.783-.125-1.15-.125-.48 0-1.01.087-1.59.262-.58.174-1.13.478-1.64.91-.51.43-.91.968-1.204 1.614-.294.646-.441 1.353-.441 2.121s.147 1.475.44 2.121c.295.646.694 1.184 1.204 1.614.51.432 1.06.736 1.64.91.58.175 1.11.263 1.59.263.735 0 1.41-.152 2.025-.458.615-.306 1.125-.731 1.526-1.275.401-.545.602-1.085.602-1.62V15.96c0-.318-.083-.575-.25-.77-.166-.195-.374-.293-.624-.293Z"/>
+                        </svg>
+                        Konfirmasi via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function formatRupiah(angka) {
+            if (angka === null || angka === undefined || isNaN(parseFloat(angka))) return 'Rp 0';
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(parseFloat(angka));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const jumlahPembayaranElem = document.getElementById('jumlah-pembayaran');
+            const batasWaktuPembayaranElem = document.getElementById('batas-waktu-pembayaran');
+            const konfirmasiWaButton = document.getElementById('konfirmasi-wa-button');
+
+            // Ambil data dari URL
+            const harga = getUrlParameter('harga');
+            const namaPelanggan = getUrlParameter('nama'); // Asumsi nama pelanggan dikirim dari halaman formulir
+            const namaPaket = getUrlParameter('paketNama'); // Asumsi nama paket dikirim
+            const durasiPaket = getUrlParameter('durasiNama'); // Asumsi nama durasi dikirim
+
+
+            if (harga) {
+                jumlahPembayaranElem.textContent = formatRupiah(harga);
+            }
+
+            // Hitung batas waktu pembayaran (misal: 1 jam dari sekarang)
+            const sekarang = new Date();
+            const batasWaktu = new Date(sekarang.getTime() + 60 * 60 * 1000); // 1 jam
+            
+            const options = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+            batasWaktuPembayaranElem.textContent = batasWaktu.toLocaleDateString('id-ID', options).replace(' pukul ', ', ');
+
+            // Update link WhatsApp dengan data yang relevan
+            if (namaPelanggan && namaPaket && durasiPaket && harga) {
+                let textWa = `Halo Gesite AI, saya sudah melakukan pembayaran untuk pesanan atas nama *${decodeURIComponent(namaPelanggan)}* untuk paket *${decodeURIComponent(namaPaket)}* durasi *${decodeURIComponent(durasiPaket)}* sebesar *${formatRupiah(harga)}*. Mohon diproses, terima kasih.`;
+                konfirmasiWaButton.href = `https://wa.me/6289652253675?text=${encodeURIComponent(textWa)}`; // Ganti 628... dengan nomor WA Anda
+            } else {
+                // Default text jika data tidak lengkap
+                konfirmasiWaButton.href = `https://wa.me/6289652253675?text=Halo%20Gesite%20AI%2C%20saya%20ingin%20konfirmasi%20pembayaran.`;
+            }
+        });
+    </script>
+</body>
+</html>

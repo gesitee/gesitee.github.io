@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Pelanggan - Gesite AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-green: #10b981;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-bg {
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            font-size: 0.875rem;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+        .info-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            color: #1e40af;
+        }
+        .button-loading svg {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3">
+                <span class="text-xl font-bold gradient-text">Gesite AI</span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="form-pelanggan" class="pt-28 pb-16 px-4 md:px-6">
+        <div class="container mx-auto max-w-xl">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl">
+                <div class="text-left mb-6">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-1 text-gray-800">Informasi Pelanggan</h1>
+                    <p class="text-gray-600 text-sm sm:text-base">Masukkan informasi lengkap Anda untuk pembuatan akun.</p>
+                </div>
+
+                <div id="ringkasan-paket" class="mb-6 p-4 bg-gray-100 rounded-lg text-sm">
+                    <p class="text-gray-500 italic">Memuat detail paket...</p>
+                </div>
+
+                <form id="customer-form">
+                    <input type="hidden" id="hidden-paket-dipilih" name="paket">
+                    <input type="hidden" id="hidden-durasi-dipilih" name="durasi">
+                    <input type="hidden" id="hidden-harga-total" name="harga">
+
+                    <div class="mb-4">
+                        <label for="nama-lengkap" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                        <input type="text" id="nama-lengkap" name="nama_lengkap" class="input-field" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="email" name="email" class="input-field" placeholder="email@domain.com" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="no-whatsapp" class="block text-sm font-medium text-gray-700 mb-1">No. WhatsApp</label>
+                        <div class="flex">
+                            <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1ee-1f1e9.png" alt="ID Flag" class="w-5 h-5 mr-1"> +62
+                            </span>
+                            <input type="tel" id="no-whatsapp" name="no_whatsapp" class="input-field rounded-l-none" placeholder="81234567890" pattern="[0-9]{9,13}" title="Masukkan 9-13 digit nomor WhatsApp setelah +62 (contoh: 81234567890)" required>
+                        </div>
+                         <p class="text-xs text-gray-500 mt-1">Contoh: 81234567890 (tanpa 0 di depan).</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="kode-referral" class="block text-sm font-medium text-gray-700 mb-1">Kode Referral (Opsional)</label>
+                        <input type="text" id="kode-referral" name="kode_referral" class="input-field" placeholder="Masukkan kode referral">
+                    </div>
+
+                    <div class="info-box mb-8">
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-sm">Informasi Penting:</h4>
+                                <ul class="list-disc list-inside text-xs sm:text-sm space-y-1">
+                                    <li>Penggunaan Kode Referral hanya Opsional tidak wajib.</li>
+                                    <li>Pastikan email dan nomor WhatsApp yang Anda masukkan aktif.</li>
+                                    <li>Nomor WhatsApp akan divalidasi keaktifannya.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="form-message" class="mb-4 text-sm"></div>
+
+                    <div class="flex flex-col sm:flex-row justify-between items-center mt-8">
+                        <button type="button" id="ubah-paket-button" class="mb-4 sm:mb-0 text-gray-700 font-medium hover:text-blue-600 transition duration-300 py-3 px-6 border border-gray-300 rounded-full hover:bg-gray-100 w-full sm:w-auto text-center">
+                            &larr; Ubah Paket
+                        </button>
+                        <button type="submit" id="submit-form-button" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 ease-in-out font-medium w-full sm:w-auto flex items-center justify-center">
+                            <span id="submit-button-text">Lanjut &rarr;</span>
+                            <svg id="submit-button-spinner" class="hidden w-5 h-5 ml-2 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const paketDisplayData = {
+            standard: { nama: "Standard Plan" },
+            business: { nama: "Business Plan" },
+            premium: { nama: "Premium Plan" }
+        };
+
+        // GANTI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA YANG SEBENARNYA
+        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycNC45BQ9xJM1hdo3yxo_EPLe7UU39e7H9vaQLzbilssarh5No8c-YqHFBKkPLrsXqpg/exec"; 
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function formatRupiah(angka) {
+            if (angka === null || angka === undefined || isNaN(parseFloat(angka))) return 'Harga tidak valid';
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(parseFloat(angka));
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const paketId = getUrlParameter('paket');
+            const durasiUrl = getUrlParameter('durasi'); 
+            const hargaTotal = getUrlParameter('harga');
+
+            const ringkasanPaketContainer = document.getElementById('ringkasan-paket');
+            const hiddenPaketInput = document.getElementById('hidden-paket-dipilih');
+            const hiddenDurasiInput = document.getElementById('hidden-durasi-dipilih');
+            const hiddenHargaInput = document.getElementById('hidden-harga-total');
+            const submitButton = document.getElementById('submit-form-button');
+            const formMessage = document.getElementById('form-message');
+
+            if (paketId && paketDisplayData[paketId] && durasiUrl && hargaTotal) {
+                const namaPaketLengkap = paketDisplayData[paketId].nama;
+                const durasiTampilan = durasiUrl.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+                ringkasanPaketContainer.innerHTML = `
+                    <h3 class="font-semibold text-gray-700 mb-1">Paket yang Dipilih:</h3>
+                    <p class="text-gray-600">${namaPaketLengkap} - Durasi ${durasiTampilan}</p>
+                    <p class="text-gray-600 font-medium">Total Pembayaran: <span class="gradient-text font-bold">${formatRupiah(hargaTotal)}</span></p>
+                `;
+                hiddenPaketInput.value = namaPaketLengkap;
+                hiddenDurasiInput.value = durasiTampilan;
+                hiddenHargaInput.value = hargaTotal; 
+
+            } else {
+                ringkasanPaketContainer.innerHTML = '<p class="text-red-600 font-medium">Detail paket tidak lengkap atau tidak valid. Silakan kembali dan pilih paket Anda.</p>';
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
+            const ubahPaketButton = document.getElementById('ubah-paket-button');
+            ubahPaketButton.addEventListener('click', function() {
+                window.location.href = `Langganan.html${paketId ? '?paket=' + paketId : ''}`;
+            });
+
+            const customerForm = document.getElementById('customer-form');
+            const submitButtonText = document.getElementById('submit-button-text');
+            const submitButtonSpinner = document.getElementById('submit-button-spinner');
+
+            customerForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                formMessage.textContent = ''; 
+
+                // Pengecekan URL placeholder yang benar
+                if (GOOGLE_APPS_SCRIPT_URL === "MASUKKAN_URL_WEB_APP_APPS_SCRIPT_ANDA_DI_SINI") { 
+                    formMessage.textContent = 'Kesalahan konfigurasi: URL endpoint belum diatur.';
+                    formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
+                    return;
+                }
+
+                submitButtonText.textContent = 'Mengirim...';
+                submitButtonSpinner.classList.remove('hidden');
+                submitButton.disabled = true;
+
+                const formData = new FormData(customerForm);
+                
+                fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === "success") {
+                        formMessage.textContent = "Data formulir berhasil dikirim! Anda akan diarahkan ke halaman pembayaran...";
+                        formMessage.className = 'mb-4 text-sm text-green-600 font-medium';
+                        
+                        // Ambil data yang diperlukan untuk halaman pembayaran DARI FORM INPUT
+                        const hargaFinalRedirect = document.getElementById('hidden-harga-total').value;
+                        const namaPelangganRedirect = document.getElementById('nama-lengkap').value;
+                        const namaPaketLengkapRedirect = document.getElementById('hidden-paket-dipilih').value;
+                        const durasiPaketLengkapRedirect = document.getElementById('hidden-durasi-dipilih').value;
+
+                        // Arahkan ke halaman pembayaran setelah beberapa saat
+                        setTimeout(() => {
+                            window.location.href = `pembayaran.html?harga=${hargaFinalRedirect}&nama=${encodeURIComponent(namaPelangganRedirect)}&paketNama=${encodeURIComponent(namaPaketLengkapRedirect)}&durasiNama=${encodeURIComponent(durasiPaketLengkapRedirect)}`;
+                        }, 2000); // Tunggu 2 detik sebelum redirect
+
+                    } else {
+                        formMessage.textContent = "Maaf, terjadi kesalahan saat mengirim data formulir: " + (data.message || "Tidak dapat mengirim data.");
+                        formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
+                        // Kembalikan tombol ke keadaan semula jika gagal
+                        submitButtonText.textContent = 'Lanjut \u2192';
+                        submitButtonSpinner.classList.add('hidden');
+                        submitButton.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    formMessage.textContent = "Terjadi kesalahan jaringan atau server. Silakan coba lagi nanti.";
+                    formMessage.className = 'mb-4 text-sm text-red-600 font-medium';
+                    // Kembalikan tombol ke keadaan semula jika gagal
+                    submitButtonText.textContent = 'Lanjut \u2192';
+                    submitButtonSpinner.classList.add('hidden');
+                    submitButton.disabled = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
