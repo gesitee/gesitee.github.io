@@ -8,24 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Warna Utama Website dari index.html */
             --primary-blue: #2563eb;
             --primary-green: #10b981;
-            --dark-blue: #1e40af;
-            --dark-green: #059669;
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f9fafb; /* Match bg-gray-50 */
+            background-color: #f9fafb;
         }
         .gradient-text {
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-        .gradient-bg { /* Tidak digunakan langsung di sini, tapi jaga konsistensi */
-            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
         }
         .info-box-warning {
             background-color: #eff6ff;
@@ -35,37 +29,42 @@
             color: #1e40af;
         }
         .qris-container {
-            max-width: 280px; /* Kontrol ukuran QRIS agar tidak terlalu besar */
+            max-width: 280px;
             margin-left: auto;
             margin-right: auto;
             padding: 1rem;
-            border: 1px solid #e5e7eb; /* border-gray-200 */
-            border-radius: 0.75rem; /* rounded-xl */
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
         }
         .qris-image {
             width: 100%;
             height: auto;
-            border-radius: 0.5rem; /* rounded-lg */
+            border-radius: 0.5rem;
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <nav class="fixed w-full bg-white shadow-sm z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-start"> <div class="flex items-center">
-                <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3"> <span class="text-xl font-bold gradient-text">Gesite AI</span>
+        <div class="container mx-auto px-6 py-4 flex items-center justify-start">
+            <div class="flex items-center">
+                <img src="https://files.catbox.moe/9p0oto.png" alt="Logo Gesite AI" class="w-10 h-10 mr-3">
+                <span class="text-xl font-bold gradient-text">Gesite AI</span>
             </div>
-            </div>
+        </div>
     </nav>
 
     <section id="info-pembayaran" class="pt-28 pb-16 px-4 md:px-6">
-        <div class="container mx-auto max-w-lg"> <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl">
-                <div class="text-left mb-6"> <h1 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800">Informasi Pembayaran</h1>
+        <div class="container mx-auto max-w-lg">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl">
+                <div class="text-left mb-6">
+                    <h1 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800">Informasi Pembayaran</h1>
                 </div>
 
                 <div class="bg-blue-50 p-6 rounded-xl text-center mb-8 shadow">
                     <p class="text-sm text-blue-700 mb-1">Pembayaran QRIS</p>
-                    <p id="jumlah-pembayaran" class="text-3xl font-bold text-blue-600 mb-2">Rp 0</p> <p class="text-xs text-gray-500">Berakhir pada: <span id="batas-waktu-pembayaran" class="font-medium">Memuat...</span></p>
+                    <p id="jumlah-pembayaran" class="text-3xl font-bold text-blue-600 mb-2">Rp 0</p>
+                    <p class="text-xs text-gray-500">Berakhir pada: <span id="batas-waktu-pembayaran" class="font-medium">Memuat...</span></p>
                 </div>
 
                 <div class="text-center mb-6">
@@ -83,7 +82,7 @@
 
                 <div class="info-box-warning mb-8">
                     <div class="flex items-start">
-                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                         <div>
                             <h4 class="font-semibold mb-1 text-sm">Sudah Bayar?</h4>
                             <p class="text-xs sm:text-sm">
@@ -105,7 +104,7 @@
             </div>
         </div>
     </section>
-    
+
     <script>
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -120,37 +119,39 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            // Kode untuk current-year sudah dihapus dari sini
 
             const jumlahPembayaranElem = document.getElementById('jumlah-pembayaran');
             const batasWaktuPembayaranElem = document.getElementById('batas-waktu-pembayaran');
             const konfirmasiWaButton = document.getElementById('konfirmasi-wa-button');
 
-            // Ambil data dari URL
             const harga = getUrlParameter('harga');
-            const namaPelanggan = getUrlParameter('nama'); // Asumsi nama pelanggan dikirim dari halaman formulir
-            const namaPaket = getUrlParameter('paketNama'); // Asumsi nama paket dikirim
-            const durasiPaket = getUrlParameter('durasiNama'); // Asumsi nama durasi dikirim
-
+            const namaPelanggan = getUrlParameter('nama'); 
+            const namaPaket = getUrlParameter('paketNama'); 
+            const durasiPaket = getUrlParameter('durasiNama'); 
 
             if (harga) {
                 jumlahPembayaranElem.textContent = formatRupiah(harga);
+            } else {
+                jumlahPembayaranElem.textContent = "Rp -"; 
             }
 
-            // Hitung batas waktu pembayaran (misal: 1 jam dari sekarang)
             const sekarang = new Date();
             const batasWaktu = new Date(sekarang.getTime() + 60 * 60 * 1000); // 1 jam
             
-            const options = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-            batasWaktuPembayaranElem.textContent = batasWaktu.toLocaleDateString('id-ID', options).replace(' pukul ', ', ');
+            const options = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+            // Mengganti titik dengan : untuk format waktu
+            let formattedBatasWaktu = batasWaktu.toLocaleDateString('id-ID', options).replace(' pukul ', ', ');
+            formattedBatasWaktu = formattedBatasWaktu.replace(/\.(\d{2})$/, ':$1'); // Mengganti .MM di akhir jadi :MM
+            batasWaktuPembayaranElem.textContent = formattedBatasWaktu;
 
-            // Update link WhatsApp dengan data yang relevan
+
             if (namaPelanggan && namaPaket && durasiPaket && harga) {
-                let textWa = `Halo Gesite AI, saya sudah melakukan pembayaran untuk pesanan atas nama *${decodeURIComponent(namaPelanggan)}* untuk paket *${decodeURIComponent(namaPaket)}* durasi *${decodeURIComponent(durasiPaket)}* sebesar *${formatRupiah(harga)}*. Mohon diproses, terima kasih.`;
-                konfirmasiWaButton.href = `https://wa.me/6289652253675?text=${encodeURIComponent(textWa)}`; // Ganti 628... dengan nomor WA Anda
+                let textWa = `Halo Gesite.ai, saya sudah melakukan pembayaran untuk pesanan atas nama *${decodeURIComponent(namaPelanggan)}* untuk paket *${decodeURIComponent(namaPaket)}* durasi *${decodeURIComponent(durasiPaket)}* sebesar *${formatRupiah(harga)}*. Mohon diproses, terima kasih.`;
+                konfirmasiWaButton.href = `https://wa.me/6289652253675?text=${encodeURIComponent(textWa)}`; // Ganti dengan nomor WA Anda
             } else {
-                // Default text jika data tidak lengkap
-                konfirmasiWaButton.href = `https://wa.me/6289652253675?text=Halo%20Gesite%20AI%2C%20saya%20ingin%20konfirmasi%20pembayaran.`;
+                konfirmasiWaButton.href = `https://wa.me/6289652253675?text=Halo%20Gesite.ai%2C%20saya%20ingin%20konfirmasi%20pembayaran.`; // Ganti dengan nomor WA Anda
+                 console.warn("Data untuk link WhatsApp tidak lengkap:", {namaPelanggan, namaPaket, durasiPaket, harga});
             }
         });
     </script>
